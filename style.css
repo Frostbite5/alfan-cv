@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  /* Eye-friendly warm modern porcelain white palette */
+  --bg-primary: #faf9f6; /* Soft warm off-white (easy on the eyes) */
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --border-subtle: rgba(228, 228, 231, 0.85); /* zinc-200 */
+  --border-highlight: rgba(249, 115, 22, 0.35); /* Warm orange */
+  --accent-orange: #f97316;
+  --accent-orange-hover: #ea580c;
+  --accent-purple: #7c3aed;
+  --accent-purple-hover: #6d28d9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: #18181b; /* zinc-900 */
+}
+
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Custom Eye-Friendly Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Glassmorphism Styles (Light Modern) */
+.glass-nav {
+  background: rgba(250, 249, 246, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(228, 228, 231, 0.8);
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px -2px rgba(24, 24, 27, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(249, 115, 22, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -10px rgba(249, 115, 22, 0.12), 0 4px 12px -2px rgba(124, 58, 237, 0.06);
+}
+
+/* Soft Ambient Glows (Gentle Peach & Lavender, zero eye strain) */
+.ambient-glow-1 {
+  position: absolute;
+  top: 5%;
+  left: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(254, 215, 170, 0.45) 0%, rgba(250, 249, 246, 0) 70%);
+  pointer-events: none;
+  filter: blur(50px);
+  z-index: 0;
+}
+
+.ambient-glow-2 {
+  position: absolute;
+  top: 45%;
+  right: 10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(233, 213, 255, 0.4) 0%, rgba(250, 249, 246, 0) 70%);
+  pointer-events: none;
+  filter: blur(60px);
+  z-index: 0;
+}
+
+/* Subtle Text Gradient Accents (Sunset Orange + Royal Purple) */
+.text-gradient-accent {
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 40%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Eye-friendly Dot Pattern */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(120, 113, 108, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Filter Tab Active State */
+.filter-btn {
+  transition: all 0.2s ease;
+}
+.filter-btn.active {
+  background: #ea580c; /* High contrast warm sunset orange */
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px -2px rgba(234, 88, 12, 0.35);
+}
+
+/* Video Card Thumbnail Hover Overlay */
+.video-card .play-overlay {
+  opacity: 0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+.video-card:hover .play-overlay {
+  opacity: 1;
+}
+.video-card:hover img {
+  transform: scale(1.04);
+}
+.video-card img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal Animation */
+.modal-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-container {
+  transform: scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-backdrop.open .modal-container {
+  transform: scale(1);
+}
+
+/* Toast Notification */
+#toast {
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Pulse animation for active availability status */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
