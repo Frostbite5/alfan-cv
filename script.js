@@ -1,355 +1,572 @@
-// Imam Alfan Rahadyan - Portfolio Case Studies with Real PPT Assets
-const caseStudies = [
+// Reverse-Engineered didisuhardi.com Architecture for Imam Alfan Rahadyan
+
+// 1. PROJECTS & CASE STUDIES DATA
+const projectsData = [
   {
     id: "frost-one",
-    title: "Frost.One: Scaling Faceless Media to 68K+ Subscribers",
-    category: "content",
-    categoryLabel: "Faceless YouTube Media",
-    badgeColor: "orange",
-    stats: "26.4M+ Views / Month",
-    subStats: "68K+ Subs • 95%+ Retention",
-    client: "YouTube Creator Channel",
-    summary: "Built and scaled a faceless digital media channel from 0 to 43k+ subscribers in 5 months, and expanded to 68k+ subscribers with 26.4M+ monthly views.",
-    description: "Crafted viral short-form and high-retention video content consistently hitting multi-million views. Engineered narrative hooks, researched script concepts, and handled full-stack video editing and audience retention optimization.",
-    tags: ["Viral Retention", "Scriptwriting", "Video Editing", "YouTube Analytics", "Faceless Media"],
+    title: "Frost.One: Scaling Faceless Media",
+    category: "Digital Media Growth",
+    metric: "26.4M+ Views / Month",
+    subMetric: "68K+ Subs • 95%+ Retention",
     image: "assets/images/frost-analytics.png",
-    keyHighlights: [
-      "Grew channel from 0 to 43k+ subscribers in just 5 months (Aug 2023 - Jan 2024)",
-      "Surged 58.14% to 68,000+ current subscribers with 26,438,606 views in 28 days",
-      "Achieved consistent 95%+ watch retention rate on short-form videos with >1M views",
-      "Managed end-to-end production: storytelling, scriptwriting, audio mastering, and pacing"
-    ]
+    gallery: [
+      "assets/images/frost-analytics.png",
+      "assets/images/frost-banner.png",
+      "assets/images/frost-short.png"
+    ],
+    narrative: [
+      "Frost.One is a faceless digital media channel focused on technology, history, and narrative storytelling. The channel was built and scaled from 0 to 43,000+ subscribers within 5 months through viral, retention-engineered short-form videos.",
+      "Following a strategic hiatus, the channel surged by 58.14% to over 68,000 active subscribers, generating 26,438,606 views and 207,500 watch hours in a single 28-day window.",
+      "The content pipeline integrates data-driven keyword research, custom narrative scriptwriting, fast-paced kinetic typography, and multi-track audio leveling ensuring an average watch retention rate of 95%+ on videos surpassing 1,000,000+ views."
+    ],
+    highlights: [
+      "Scaled to 68,842+ subscribers and 26.4M+ monthly views organically",
+      "Multiple short-form videos surpassing 1,000,000+ views each",
+      "Consistent 95%+ average retention rate through hook-driven pacing",
+      "Full production ownership: scripting, voiceover sync, editing, and thumbnail design"
+    ],
+    tags: ["Faceless Media", "Viral Retention", "Scriptwriting", "YouTube Analytics", "Video Editing"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20I'm%20interested%20in%20your%20video%20growth%20services!",
+    ctaText: "Discuss Video Growth"
   },
   {
     id: "teman-crypto",
-    title: "Teman Crypto Indonesia: Web3 Community & Partnerships",
-    category: "web3",
-    categoryLabel: "Web3 & Community Operations",
-    badgeColor: "purple",
-    stats: "1,000+ Members Scaled",
-    subStats: "Top Exchange Partners",
-    client: "Co-Founder & COO",
-    summary: "Co-founded an Indonesian crypto community, scaling from 0 to 1k+ members and securing strategic partnerships with major global crypto exchanges.",
-    description: "Spearheaded community growth, hosted high-impact live AMAs, designed educational crypto campaigns, and executed collaborations with Tokocrypto, Bybit, and Bitget.",
-    tags: ["Community Operations", "Exchange Partnerships", "AMA Host", "DeFi / Web3", "Social Impact"],
+    title: "Teman Crypto Indonesia",
+    category: "Web3 & Community Operations",
+    metric: "1,000+ Scaled Members",
+    subMetric: "Top Exchange Partners",
     image: "assets/images/teman-crypto.png",
-    keyHighlights: [
-      "Co-founded community and grew to 1,000+ active members across Telegram & social channels",
-      "Official Partner of Binance Community Summit 2021 (CeFi vs DeFi) with Tokocrypto",
-      "Hosted official AMAs and trading events with Bybit Indonesia and Bitget Global",
-      "Organized community bounties, quizzes, and real-world social donations (baksos)"
-    ]
-  },
-  {
-    id: "creative-design",
-    title: "Visual Design, Illustrations & Award-Winning Posters",
-    category: "design",
-    categoryLabel: "Visual Design & Illustration",
-    badgeColor: "amber",
-    stats: "1st Place Winner UGM",
-    subStats: "Sneztaz Magazine & LIPI",
-    client: "Creative & Publication Work",
-    summary: "Winner of Gadjah Mada University Panateen Poster Competition (FK-KMK UGM), illustrator for Kintakun x Lazada, and magazine layout designer.",
-    description: "Developed innovative visual layouts and vector illustrations elevating brand aesthetics. Designed merchandise patterns, mascot concepts, and scientific posters.",
-    tags: ["Visual Design", "Poster Art", "Illustrator", "Brand Layouts", "Editorial"],
-    image: "assets/images/art-landscape.png",
-    keyHighlights: [
-      "1st Place Winner of Poster Design Competition held by FK-KMK Universitas Gadjah Mada (2019)",
-      "Designed layout and creative graphics for Sneztaz Magazine media publications",
-      "Created licensed illustration patterns for Kintakun x Lazada Kreasi #darikamar",
-      "Developed mascot and visual identity concepts for government/science bodies (LIPI)"
-    ]
-  },
-  {
-    id: "pmm-jambi",
-    title: "Pertukaran Mahasiswa Merdeka: Suku Anak Dalam Program",
-    category: "impact",
-    categoryLabel: "National Exchange Program",
-    badgeColor: "purple",
-    stats: "Kemendikbud Scholarship",
-    subStats: "Grade A • Suku Anak Dalam",
-    client: "Universitas Jambi & Kemendikbud",
-    summary: "Selected for a fully funded 6-month flagship national exchange scholarship, conducting cultural immersion and interactive teaching for Suku Anak Dalam.",
-    description: "Completed advanced courses in International Trade, Monetary Economics, and Capital Market with Grade A, while leading community outreach in Jambi province.",
-    tags: ["Student Exchange", "International Relations", "Education Outreach", "Economics"],
-    image: "assets/images/pmm-jambi.jpg",
-    keyHighlights: [
-      "Awarded fully funded Kemendikbud Merdeka Belajar exchange scholarship to Universitas Jambi",
-      "Conducted on-site social visits and interactive lessons with Suku Anak Dalam communities",
-      "Completed rigorous business and economic coursework with straight 'A' distinctions"
-    ]
+    gallery: [
+      "assets/images/teman-crypto.png",
+      "assets/images/teman-crypto-bybit.png",
+      "assets/images/teman-crypto-bitget.png"
+    ],
+    narrative: [
+      "Teman Crypto Indonesia is an active grassroots cryptocurrency community co-founded by Hanafi and Imam Alfan Rahadyan. The initiative was designed to educate, onboard, and protect Indonesian retail users navigating Web3 and decentralized finance.",
+      "As Co-Founder and COO, Alfan spearheaded strategic partnerships with leading global exchanges including Tokocrypto, Bybit, and Bitget, hosting live Ask-Me-Anything (AMA) sessions and trading competitions.",
+      "Beyond digital engagement, the community organized social impact initiatives, including real-world charitable donations (baksos) and educational airdrop research briefs for members."
+    ],
+    highlights: [
+      "Co-founded and scaled community from 0 to 1,000+ active members across Telegram and socials",
+      "Official Partner of Binance Community Summit 2021 (CeFi vs DeFi) alongside Tokocrypto",
+      "Hosted high-engagement AMA sessions with Bybit Indonesia and Bitget Global leaders",
+      "Coordinated bounties, token launch promotions, and social charity donation drives"
+    ],
+    tags: ["Community Operations", "Web3 Partnerships", "AMA Host", "Tokocrypto", "Bybit", "Bitget"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20I'd%20like%20to%20discuss%20community%20operations!",
+    ctaText: "Connect on Web3"
   },
   {
     id: "ipb-finance",
-    title: "Stock Trading Competition Finalist (IPB Finance Fest)",
-    category: "web3",
-    categoryLabel: "Financial & Market Analysis",
-    badgeColor: "orange",
-    stats: "Top 10 of 350+ Participants",
-    subStats: "2-Week Trading Sprint",
-    client: "IPB University Finance Fest",
-    summary: "Recognized as a Top 10 Finalist among 350+ nationwide competitors in a high-intensity 2-week active stock trading championship.",
-    description: "Executed data-driven technical analysis, risk management, and market liquidity strategies to outperform 97% of participants.",
-    tags: ["Financial Markets", "Technical Analysis", "Risk Management", "Data Analytics"],
+    title: "IPB Finance Fest Stock Trading",
+    category: "Financial & Market Analysis",
+    metric: "Rank 10 of 350+ Teams",
+    subMetric: "National Finalist 2022",
     image: "assets/images/ipb-finalist.png",
-    keyHighlights: [
-      "Ranked Top 10 out of 350+ trading teams and individual participants across Indonesia",
-      "Maintained disciplined risk-to-reward ratios during volatile market conditions",
-      "Demonstrated analytical rigor in capital market strategy and portfolio management"
-    ]
+    gallery: [
+      "assets/images/ipb-finalist.png"
+    ],
+    narrative: [
+      "The IPB University Finance Fest Stock Trading Competition is a high-intensity nationwide contest challenging students to execute live market transactions, manage portfolios, and maintain strict risk parameters.",
+      "Alfan competed under team 'When Moon Sir?' through a 2-week active trading sprint, successfully ranking 10th out of more than 350 participants from universities across Indonesia.",
+      "The strategy blended macroeconomic catalysts, technical chart analysis, and capital preservation discipline during volatile equity market cycles."
+    ],
+    highlights: [
+      "Ranked Top 10 out of 350+ nationwide trading teams",
+      "Maintained positive risk-reward ratios in high-frequency volatile markets",
+      "Demonstrated analytical rigor in capital market strategy and portfolio theory"
+    ],
+    tags: ["Stock Trading", "Market Analysis", "Risk Management", "Capital Markets"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20let's%20connect%20regarding%20financial%20analysis!",
+    ctaText: "Inquire Track Record"
+  },
+  {
+    id: "ugm-poster",
+    title: "FK-KMK UGM Panateen Winner",
+    category: "Visual Design & Illustration",
+    metric: "1st Place Winner UGM",
+    subMetric: "National Poster Contest 2019",
+    image: "assets/images/ugm-poster.jpg",
+    gallery: [
+      "assets/images/ugm-poster.jpg",
+      "assets/images/art-landscape.png"
+    ],
+    narrative: [
+      "The Panateen Competition organized by Tim Bantuan Medis Mahasiswa Panacea FK-KMK Universitas Gadjah Mada is a prestigious national contest evaluating public health communication, visual hierarchy, and persuasive design.",
+      "Alfan was awarded 1st Place (Juara 1 Lomba Poster) for an original poster layout effectively communicating complex health messages with compelling illustration and clear typography.",
+      "This foundational victory established his passion for combining visual aesthetic excellence with high-retention audience communication."
+    ],
+    highlights: [
+      "1st Place Winner (Juara 1) nationwide among hundreds of student submissions",
+      "Certified by Dean of Faculty of Medicine, Public Health, and Nursing UGM",
+      "Demonstrated mastery of visual hierarchy, vector graphics, and color theory"
+    ],
+    tags: ["Poster Design", "Visual Hierarchy", "Vector Art", "UGM Winner", "Graphic Design"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20let's%20discuss%20visual%20design!",
+    ctaText: "Discuss Design Project"
+  },
+  {
+    id: "pmm-jambi",
+    title: "PMM Kemendikbud: Suku Anak Dalam",
+    category: "National Exchange & Outreach",
+    metric: "Grade A • Flagship Program",
+    subMetric: "Universitas Jambi 2021",
+    image: "assets/images/pmm-jambi.jpg",
+    gallery: [
+      "assets/images/pmm-jambi.jpg",
+      "assets/images/pmm-cert.png"
+    ],
+    narrative: [
+      "Selected as a recipient of the fully funded Kemendikbud Merdeka Belajar Domestic Student Exchange program, Alfan completed a 6-month academic and cultural residency at Universitas Jambi.",
+      "Alongside achieving straight 'A' grades across International Trade, Monetary Economics, and Agrarian Politics, he actively led social immersion visits into indigenous communities in Jambi.",
+      "His team delivered interactive lessons, educational materials, and cultural exchange sessions with children of Suku Anak Dalam, documenting grassroots community empowerment."
+    ],
+    highlights: [
+      "Awarded prestigious fully funded national scholarship by Kemendikbud-LPDP",
+      "Conducted on-site visits and interactive lessons with indigenous Suku Anak Dalam",
+      "Completed rigorous economics and business coursework with Grade 'A' distinctions"
+    ],
+    tags: ["Student Exchange", "Suku Anak Dalam", "Community Outreach", "Scholarship"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20I'd%20love%20to%20know%20more%20about%20your%20exchange%20experience!",
+    ctaText: "Ask About Experience"
+  },
+  {
+    id: "art-illustrations",
+    title: "Vector Art & Brand Illustrations",
+    category: "Creative Publication & Layout",
+    metric: "Lazada, LIPI & Sneztaz",
+    subMetric: "Commercial Artwork Collection",
+    image: "assets/images/art-landscape.png",
+    gallery: [
+      "assets/images/art-landscape.png",
+      "assets/images/art-kintakun.png",
+      "assets/images/art-lipi.png"
+    ],
+    narrative: [
+      "A diverse portfolio of commercial visual assets spanning digital landscapes, mascot character concepts, merchandise bedding patterns, and editorial magazine typography.",
+      "Includes licensed pattern illustrations for Kintakun x Lazada Kreasi #darikamar, scientific mascot character design for the Indonesian Institute of Sciences (LIPI), and editorial layouts for Sneztaz Magazine.",
+      "Every piece emphasizes clean vector precision, vibrant palettes, and strong visual storytelling tailored to client brand identity."
+    ],
+    highlights: [
+      "Designed commercial merchandise patterns for Kintakun x Lazada campaign",
+      "Created character mascot concepts for LIPI research institution",
+      "Editorial layout designer for Sneztaz Magazine media publications",
+      "Original vector minimalist landscape series with scenic mountain sunsets"
+    ],
+    tags: ["Vector Illustration", "Brand Mascot", "Merchandise Design", "Editorial Layout"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20I'm%20interested%20in%20your%20illustration%20work!",
+    ctaText: "View More Art"
   },
   {
     id: "gpp-jember",
-    title: "Gerakan Peduli Perempuan: Social Impact & Videography",
-    category: "impact",
-    categoryLabel: "Videography & Team Leadership",
-    badgeColor: "emerald",
-    stats: "5-Member Team Led",
-    subStats: "Social Empowerment",
-    client: "GPP Jember (Internship)",
-    summary: "Served as Videographer, Editor & Regional Team Leader directing educational campaigns on women's rights and community development.",
-    description: "Managed a 5-member team executing community programs on maternal-infant health and women empowerment in Tegalgede, Jember, producing compelling advocacy video stories.",
-    tags: ["Team Leadership", "Videography", "Documentary Editing", "Social Advocacy"],
+    title: "Gerakan Peduli Perempuan Jember",
+    category: "Videography & Team Leadership",
+    metric: "5-Member Team Led",
+    subMetric: "Advocacy Media Internship",
     image: "assets/images/frost-short.png",
-    keyHighlights: [
-      "Led regional 5-member team on grassroots educational and empowerment programs",
-      "Captured, directed, and edited multimedia stories focused on maternal-child health",
-      "Synthesized community feedback into accessible visual and educational modules"
-    ]
+    gallery: [
+      "assets/images/frost-short.png",
+      "assets/images/pmm-jambi.jpg"
+    ],
+    narrative: [
+      "Serving as Videographer, Editor, and Regional Team Leader for Gerakan Peduli Perempuan Jember, Alfan directed multimedia advocacy campaigns centered on women's rights and maternal health.",
+      "He managed a 5-member regional team to execute community educational programs in Tegalgede, Jember, translating complex health and legal concepts into empathetic, engaging video formats.",
+      "The resulting video content was distributed across grassroots social channels to raise local awareness and drive community participation."
+    ],
+    highlights: [
+      "Led regional 5-member cross-functional team across program planning and field execution",
+      "Produced and edited compelling advocacy video modules for maternal-infant health",
+      "Direct engagement with community leaders and local families in Tegalgede, Jember"
+    ],
+    tags: ["Team Leadership", "Videography", "Advocacy Media", "Community Health"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20let's%20talk%20about%20video%20production!",
+    ctaText: "Discuss Media Production"
+  },
+  {
+    id: "duolingo-b2",
+    title: "Duolingo / EF English Proficiency",
+    category: "Language Credential",
+    metric: "CEFR B2 (Score 110/160)",
+    subMetric: "Upper-Intermediate Level",
+    image: "assets/images/duolingo-cert.png",
+    gallery: [
+      "assets/images/duolingo-cert.png"
+    ],
+    narrative: [
+      "Imam Alfan scored 110/160 on the official Duolingo English Test, formally evaluated as equivalent to CEFR B2 (Upper-Intermediate Proficiency).",
+      "Test breakdowns highlight strong literacy and comprehension (120 Comprehension score), enabling fluent professional collaboration with international partners, global crypto protocols, and multinational creator networks."
+    ],
+    highlights: [
+      "Official CEFR B2 certification with verified certificate code",
+      "High comprehension score (120) for rapid complex content synthesis",
+      "Demonstrated ability to host bilingual community events and AMAs"
+    ],
+    tags: ["English Proficiency", "CEFR B2", "Duolingo English Test", "Bilingual"],
+    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20pleased%20to%20connect%20in%20English!",
+    ctaText: "Contact Directly"
   }
 ];
 
+// 2. TYPEWRITER EFFECT (Matching didisuhardi.com Hero)
+const typewriterRoles = [
+  "Digital Creator & Operations Lead",
+  "Faceless YouTube Creator (68K+ Subs)",
+  "Web3 Community Co-Founder & COO",
+  "Short-Form Retention Specialist (95%+)",
+  "International Relations (GPA 3.82)"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 75;
+
+function updateTypewriter() {
+  const el = document.getElementById("typewriter-text");
+  if (!el) return;
+
+  const currentRole = typewriterRoles[roleIndex];
+
+  if (isDeleting) {
+    el.textContent = currentRole.substring(0, charIndex - 1);
+    charIndex--;
+    typeSpeed = 35;
+  } else {
+    el.textContent = currentRole.substring(0, charIndex + 1);
+    charIndex++;
+    typeSpeed = 75;
+  }
+
+  if (!isDeleting && charIndex === currentRole.length) {
+    isDeleting = true;
+    typeSpeed = 1800; // Pause at end of word
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    roleIndex = (roleIndex + 1) % typewriterRoles.length;
+    typeSpeed = 400; // Pause before next word
+  }
+
+  setTimeout(updateTypewriter, typeSpeed);
+}
+
+// 3. CONSTELLATION PARTICLE CANVAS (Matching didisuhardi.com Particle Mesh)
+function initParticleCanvas() {
+  const canvas = document.getElementById("particle-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const particleCount = Math.floor(Math.min(width, 1400) / 22);
+  const particles = [];
+  const maxDistance = 135;
+
+  let mouse = { x: null, y: null, radius: 150 };
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  window.addEventListener("mouseleave", () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      radius: Math.random() * 1.8 + 1.2
+    });
+  }
+
+  function getComputedColor(varName, fallback) {
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || fallback;
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    const isDark = document.documentElement.classList.contains("dark");
+    const dotColor = isDark ? "rgba(249, 115, 22, 0.45)" : "rgba(234, 88, 12, 0.35)";
+    const lineColor = isDark ? "rgba(249, 115, 22, 0.14)" : "rgba(234, 88, 12, 0.09)";
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      // Mouse gentle interaction
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const force = (1 - dist / mouse.radius) * 0.02;
+          p.x -= dx * force;
+          p.y -= dy * force;
+        }
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = dotColor;
+      ctx.fill();
+
+      // Connect nearby particles
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p.x - p2.x;
+        const dy = p.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < maxDistance) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = lineColor;
+          ctx.lineWidth = 1 - dist / maxDistance;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
+
+// 4. MULTI-PANEL STATE CONTROLLER (Home, Steps, About)
+let currentPanel = "home";
+
+function showPanel(panelName) {
+  currentPanel = panelName;
+
+  const panels = {
+    home: document.getElementById("panel-home"),
+    steps: document.getElementById("panel-steps"),
+    about: document.getElementById("panel-about")
+  };
+
+  const backBtn = document.getElementById("header-back-btn");
+  const sectionTitle = document.getElementById("header-section-title");
+
+  Object.keys(panels).forEach(key => {
+    if (panels[key]) {
+      if (key === panelName) {
+        panels[key].classList.add("active");
+      } else {
+        panels[key].classList.remove("active");
+      }
+    }
+  });
+
+  if (panelName === "home") {
+    if (backBtn) backBtn.classList.remove("visible");
+    if (sectionTitle) sectionTitle.textContent = "";
+  } else if (panelName === "steps") {
+    if (backBtn) backBtn.classList.add("visible");
+    if (sectionTitle) sectionTitle.textContent = "EACH OF MY STEPS";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else if (panelName === "about") {
+    if (backBtn) backBtn.classList.add("visible");
+    if (sectionTitle) sectionTitle.textContent = "MORE ABOUT ME AND MY JOURNEY";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+// 5. RENDER POLAROID GALLERY ("EACH OF MY STEPS")
+function renderPolaroidGallery() {
+  const container = document.getElementById("polaroid-gallery");
+  if (!container) return;
+
+  const tilts = ["tilt-1", "tilt-2", "tilt-3", "tilt-4", "tilt-5", "tilt-6", "tilt-7", "tilt-8"];
+
+  container.innerHTML = projectsData.map((item, index) => {
+    const tiltClass = tilts[index % tilts.length];
+    return `
+      <div class="polaroid-card ${tiltClass}" onclick="openDetailModal('${item.id}')">
+        <div class="polaroid-metric-badge">${item.metric}</div>
+        <div class="polaroid-img-wrapper">
+          <img src="${item.image}" alt="${escapeHtml(item.title)}" loading="lazy" />
+        </div>
+        <div class="polaroid-title">${item.title}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+// 6. DETAIL MODAL CONTROLLER (Two-Column Layout)
+function openDetailModal(caseId) {
+  const item = projectsData.find(p => p.id === caseId);
+  if (!item) return;
+
+  const modal = document.getElementById("case-modal");
+  if (!modal) return;
+
+  // Populate left column
+  document.getElementById("modal-category").textContent = item.category;
+  document.getElementById("modal-title").textContent = item.title;
+
+  const narrativeContainer = document.getElementById("modal-narrative");
+  narrativeContainer.innerHTML = item.narrative.map(p => `
+    <p class="modal-narrative-text">${escapeHtml(p)}</p>
+  `).join("");
+
+  const highlightsContainer = document.getElementById("modal-highlights-list");
+  highlightsContainer.innerHTML = item.highlights.map(h => `
+    <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
+      <span style="color: var(--accent-orange); font-weight: 800;">✓</span>
+      <span>${escapeHtml(h)}</span>
+    </div>
+  `).join("");
+
+  const tagsContainer = document.getElementById("modal-tags");
+  tagsContainer.innerHTML = item.tags.map(t => `
+    <span class="modal-tag-pill">#${escapeHtml(t)}</span>
+  `).join("");
+
+  const ctaBtn = document.getElementById("modal-cta-btn");
+  if (ctaBtn) {
+    ctaBtn.href = item.ctaLink;
+    ctaBtn.textContent = item.ctaText;
+  }
+
+  // Populate right column (Polaroid stack)
+  const galleryContainer = document.getElementById("modal-polaroid-stack");
+  galleryContainer.innerHTML = item.gallery.map(imgSrc => `
+    <div class="modal-polaroid-item">
+      <img src="${imgSrc}" alt="${escapeHtml(item.title)}" />
+    </div>
+  `).join("");
+
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeDetailModal() {
+  const modal = document.getElementById("case-modal");
+  if (modal) {
+    modal.classList.remove("open");
+    document.body.style.overflow = "auto";
+  }
+}
+
+// 7. JOURNEY TABS CONTROLLER (Experience, Organization, Education, Achievement)
+function setupJourneyTabs() {
+  const tabs = document.querySelectorAll(".journey-tab-btn");
+  const panels = document.querySelectorAll(".journey-tab-panel");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-tab");
+
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      panels.forEach(p => {
+        if (p.getAttribute("data-panel") === target) {
+          p.classList.add("active");
+        } else {
+          p.classList.remove("active");
+        }
+      });
+    });
+  });
+}
+
+// 8. THEME TOGGLE (Dark / Light Mode)
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById("theme-toggle-btn");
+  if (!toggleBtn) return;
+
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    const isDark = document.documentElement.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    
+    // Toggle sun / moon icons
+    const icon = toggleBtn.querySelector("i");
+    if (icon && window.lucide) {
+      icon.setAttribute("data-lucide", isDark ? "sun" : "moon");
+      window.lucide.createIcons();
+    }
+  });
+}
+
+// 9. ESCAPE KEY & GLOBAL KEYBOARD SHORTCUTS
+function setupKeyboardNavigation() {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const modal = document.getElementById("case-modal");
+      if (modal && modal.classList.contains("open")) {
+        closeDetailModal();
+      } else if (currentPanel !== "home") {
+        showPanel("home");
+      }
+    }
+  });
+}
+
+// 10. INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
-  renderCaseStudies("all");
-  setupFilters();
-  setupModal();
-  setupCopyEmail();
-  setupMobileMenu();
-  setupDynamicYear();
-  
+  initParticleCanvas();
+  updateTypewriter();
+  renderPolaroidGallery();
+  setupJourneyTabs();
+  setupThemeToggle();
+  setupKeyboardNavigation();
+
+  // Navigation Event Listeners
+  const openBoxBtn = document.getElementById("open-box-btn");
+  if (openBoxBtn) {
+    openBoxBtn.addEventListener("click", () => showPanel("steps"));
+  }
+
+  const polaroidStackBtn = document.getElementById("polaroid-stack-btn");
+  if (polaroidStackBtn) {
+    polaroidStackBtn.addEventListener("click", () => showPanel("about"));
+  }
+
+  const backBtn = document.getElementById("header-back-btn");
+  if (backBtn) {
+    backBtn.addEventListener("click", () => showPanel("home"));
+  }
+
+  const modalCloseBtn = document.getElementById("modal-close-x");
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener("click", closeDetailModal);
+  }
+
+  const modalBackdrop = document.getElementById("modal-backdrop-el");
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener("click", closeDetailModal);
+  }
+
   if (window.lucide) {
     window.lucide.createIcons();
   }
 });
 
-// Render Case Studies to Grid
-function renderCaseStudies(filter = "all") {
-  const grid = document.getElementById("projects-grid");
-  if (!grid) return;
-
-  const filtered = filter === "all" ? caseStudies : caseStudies.filter(p => p.category === filter);
-
-  grid.innerHTML = filtered.map(item => `
-    <div class="glass-card bg-white rounded-2xl overflow-hidden group flex flex-col justify-between border border-zinc-200/90 hover:border-orange-300 transition-all duration-300">
-      
-      <!-- Card Image Header (Real PPT asset) -->
-      <div class="relative w-full aspect-[16/9] overflow-hidden bg-zinc-100 cursor-pointer" onclick="openDetailModal('${item.id}')">
-        <img src="${item.image}" 
-             alt="${escapeHtml(item.title)}" 
-             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-             loading="lazy" />
-        
-        <!-- Category Pill -->
-        <div class="absolute top-3 left-3 flex items-center gap-2">
-          <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-white/95 text-zinc-900 border border-zinc-200/90 shadow-sm uppercase tracking-wider font-mono">
-            ${item.categoryLabel}
-          </span>
-        </div>
-
-        <!-- Metric Highlight Badge -->
-        <div class="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-500 text-white shadow-md shadow-orange-500/25">
-          <i data-lucide="trending-up" class="w-3.5 h-3.5 inline"></i>
-          <span>${item.stats}</span>
-        </div>
-
-        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
-          <span class="font-mono bg-zinc-900/80 px-2.5 py-0.5 rounded backdrop-blur-sm font-semibold">
-            ${item.subStats}
-          </span>
-        </div>
-      </div>
-
-      <!-- Card Content -->
-      <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-        <div>
-          <div class="text-xs font-bold text-orange-600 mb-1 tracking-wider uppercase font-mono">${item.client}</div>
-          <h3 class="text-lg font-bold text-zinc-900 group-hover:text-orange-600 transition-colors leading-snug cursor-pointer" onclick="openDetailModal('${item.id}')">
-            ${item.title}
-          </h3>
-          <p class="text-sm text-zinc-600 mt-2 line-clamp-3 leading-relaxed">
-            ${item.summary}
-          </p>
-        </div>
-
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-1.5 pt-1">
-          ${item.tags.slice(0, 3).map(tag => `
-            <span class="px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-700 text-[11px] font-medium border border-zinc-200/60">
-              #${tag}
-            </span>
-          `).join("")}
-        </div>
-
-        <!-- Detail Action Button -->
-        <div class="pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
-          <span class="text-zinc-500 font-medium flex items-center gap-1">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> Verified Track Record
-          </span>
-          <button onclick="openDetailModal('${item.id}')" class="text-orange-600 hover:text-orange-700 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-            View Case Study <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-
-      </div>
-    </div>
-  `).join("");
-
-  if (window.lucide) {
-    window.lucide.createIcons();
-  }
-}
-
-// Filter Tabs Handling
-function setupFilters() {
-  const buttons = document.querySelectorAll(".filter-btn");
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const category = btn.getAttribute("data-filter");
-      renderCaseStudies(category);
-    });
-  });
-}
-
-// Detail Modal Management
-function setupModal() {
-  const modal = document.getElementById("detail-modal");
-  const closeBtn = document.getElementById("close-modal-btn");
-  const backdrop = document.getElementById("modal-backdrop");
-
-  if (!modal) return;
-
-  function closeModal() {
-    modal.classList.remove("open");
-    document.body.style.overflow = "auto";
-  }
-
-  if (closeBtn) closeBtn.addEventListener("click", closeModal);
-  if (backdrop) backdrop.addEventListener("click", closeModal);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("open")) {
-      closeModal();
-    }
-  });
-}
-
-function openDetailModal(caseId) {
-  const item = caseStudies.find(c => c.id === caseId);
-  if (!item) return;
-
-  const modal = document.getElementById("detail-modal");
-  const modalTitle = document.getElementById("modal-title");
-  const modalClient = document.getElementById("modal-client");
-  const modalDesc = document.getElementById("modal-description");
-  const modalHighlights = document.getElementById("modal-highlights");
-  const modalStats = document.getElementById("modal-stats");
-  const modalTags = document.getElementById("modal-tags");
-  const modalImage = document.getElementById("modal-image");
-
-  if (!modal) return;
-
-  if (modalTitle) modalTitle.textContent = item.title;
-  if (modalClient) modalClient.textContent = item.client + " • " + item.categoryLabel;
-  if (modalDesc) modalDesc.textContent = item.description;
-  if (modalStats) modalStats.textContent = item.stats + " (" + item.subStats + ")";
-  if (modalImage) {
-    modalImage.src = item.image;
-    modalImage.alt = item.title;
-  }
-
-  if (modalHighlights) {
-    modalHighlights.innerHTML = item.keyHighlights.map(h => `
-      <li class="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
-        <i data-lucide="check" class="w-4 h-4 text-orange-600 flex-shrink-0 mt-0.5"></i>
-        <span>${escapeHtml(h)}</span>
-      </li>
-    `).join("");
-  }
-
-  if (modalTags) {
-    modalTags.innerHTML = item.tags.map(t => `
-      <span class="px-2.5 py-1 rounded-lg bg-orange-50 text-orange-700 text-xs font-semibold border border-orange-200">
-        ${escapeHtml(t)}
-      </span>
-    `).join("");
-  }
-
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
-
-  if (window.lucide) {
-    window.lucide.createIcons();
-  }
-}
-
-// Copy Email with Toast Notification
-function setupCopyEmail() {
-  const copyBtn = document.getElementById("copy-email-btn");
-  const emailVal = "alfan.rahadyan10@gmail.com";
-  
-  if (copyBtn) {
-    copyBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(emailVal).then(() => {
-        showToast("Email address copied: " + emailVal);
-      }).catch(() => {
-        showToast("Email: " + emailVal);
-      });
-    });
-  }
-}
-
-function showToast(message) {
-  let toast = document.getElementById("toast");
-  if (!toast) return;
-  
-  toast.querySelector("#toast-message").textContent = message;
-  toast.classList.add("show");
-  
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
-}
-
-// Mobile Hamburger Menu
-function setupMobileMenu() {
-  const toggleBtn = document.getElementById("mobile-menu-toggle");
-  const menu = document.getElementById("mobile-menu");
-
-  if (!toggleBtn || !menu) return;
-
-  toggleBtn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
-  });
-
-  const links = menu.querySelectorAll("a");
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-      menu.classList.add("hidden");
-    });
-  });
-}
-
-// Dynamic Current Year
-function setupDynamicYear() {
-  const yearEl = document.getElementById("current-year");
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-}
-
-// Utility to escape HTML
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/[&<>'"]/g, 
