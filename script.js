@@ -370,6 +370,7 @@ function initParticleCanvas() {
 
 // 4. MULTI-PANEL STATE CONTROLLER (Home, Steps, About)
 let currentPanel = "home";
+let isBoxOpening = false;
 
 function showPanel(panelName) {
   currentPanel = panelName;
@@ -396,16 +397,66 @@ function showPanel(panelName) {
   if (panelName === "home") {
     if (backBtn) backBtn.classList.remove("visible");
     if (sectionTitle) sectionTitle.textContent = "";
+    // Cleanly reset surprise gift box animation
+    const giftWrapper = document.getElementById("gift-box-wrapper");
+    if (giftWrapper) {
+      giftWrapper.classList.remove("is-opening");
+    }
+    isBoxOpening = false;
   } else if (panelName === "steps") {
     if (backBtn) backBtn.classList.add("visible");
-    if (sectionTitle) sectionTitle.textContent = "EACH OF MY STEPS";
+    if (sectionTitle) sectionTitle.textContent = "PORTFOLIO & SELECTED WORKS";
     window.scrollTo({ top: 0, behavior: "smooth" });
   } else if (panelName === "about") {
     if (backBtn) backBtn.classList.add("visible");
-    if (sectionTitle) sectionTitle.textContent = "MORE ABOUT ME AND MY JOURNEY";
+    if (sectionTitle) sectionTitle.textContent = "INTERACTIVE CV & RESUME";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
+
+// Flat 2D Surprise Gift Box opening trigger (Smoke puffs + Easter eggs burst)
+function triggerGiftBoxOpening() {
+  const giftWrapper = document.getElementById("gift-box-wrapper");
+  if (!giftWrapper || isBoxOpening) return;
+
+  isBoxOpening = true;
+  giftWrapper.classList.add("is-opening");
+
+  // Allow popping lid, billowing smoke puffs, and flying easter eggs to play before panel transition
+  setTimeout(() => {
+    showPanel("steps");
+    isBoxOpening = false;
+  }, 750);
+}
+
+// Interactive CV Mode Switcher ('document' vs 'timeline')
+function switchCvMode(mode) {
+  const docView = document.getElementById("cv-view-document");
+  const timelineView = document.getElementById("cv-view-timeline");
+  const docBtn = document.getElementById("cv-mode-doc-btn");
+  const timelineBtn = document.getElementById("cv-mode-timeline-btn");
+
+  if (mode === "timeline") {
+    if (docView) docView.classList.remove("active");
+    if (timelineView) timelineView.classList.add("active");
+    if (docBtn) docBtn.classList.remove("active");
+    if (timelineBtn) timelineBtn.classList.add("active");
+  } else {
+    // Default to document mode
+    if (docView) docView.classList.add("active");
+    if (timelineView) timelineView.classList.remove("active");
+    if (docBtn) docBtn.classList.add("active");
+    if (timelineBtn) timelineBtn.classList.remove("active");
+  }
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+}
+
+window.showPanel = showPanel;
+window.switchCvMode = switchCvMode;
+window.triggerGiftBoxOpening = triggerGiftBoxOpening;
 
 // 5. RENDER POLAROID GALLERY ("EACH OF MY STEPS")
 function renderPolaroidGallery() {
@@ -948,10 +999,26 @@ document.addEventListener("DOMContentLoaded", () => {
   setupThemeToggle();
   setupKeyboardNavigation();
 
-  // Navigation Event Listeners
+  // Navigation Event Listeners (Gift Box Surprise & CV Stack)
   const openBoxBtn = document.getElementById("open-box-btn");
   if (openBoxBtn) {
-    openBoxBtn.addEventListener("click", () => showPanel("steps"));
+    openBoxBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      triggerGiftBoxOpening();
+    });
+  }
+
+  const giftBoxWrapper = document.getElementById("gift-box-wrapper");
+  if (giftBoxWrapper) {
+    giftBoxWrapper.addEventListener("click", () => {
+      triggerGiftBoxOpening();
+    });
+    giftBoxWrapper.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        triggerGiftBoxOpening();
+      }
+    });
   }
 
   const polaroidStackBtn = document.getElementById("polaroid-stack-btn");

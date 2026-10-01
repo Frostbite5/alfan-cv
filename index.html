@@ -16,7 +16,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet (Reverse-Engineered didisuhardi.com) -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 <body>
 
@@ -125,25 +125,35 @@
           </div>
 
           <!-- Right: Interactive Fanned Polaroid Stack ("More about me Here!") -->
+          <!-- Right: Interactive Fanned Polaroid Stack (Interactive CV Trigger) -->
           <div class="hero-right-visual">
-            <button id="polaroid-stack-btn" class="polaroid-stack-btn" title="Click to view About & Journey" aria-label="More about me Here!">
+            <button id="polaroid-stack-btn" class="polaroid-stack-btn" title="Click to view Interactive CV & Career Credentials" aria-label="View Interactive CV">
               
+              <!-- Floating CV Badge -->
+              <div class="stack-cv-badge">
+                <i data-lucide="file-badge-2" style="width: 0.85rem; height: 0.85rem;"></i>
+                <span>INTERACTIVE CV</span>
+              </div>
+
               <!-- Card 1 (Back left) -->
               <div class="stack-card stack-card-1">
                 <img src="assets/images/frost-analytics.png" alt="YouTube Analytics" />
-                <div class="stack-caption">Frost.One Studio</div>
+                <div class="stack-caption">26.4M+ Views / Mo</div>
               </div>
 
               <!-- Card 2 (Back right) -->
               <div class="stack-card stack-card-2">
-                <img src="assets/images/pmm-jambi.jpg" alt="PMM Jambi Suku Anak Dalam" />
-                <div class="stack-caption">Suku Anak Dalam</div>
+                <img src="assets/images/ipb-finalist.png" alt="IPB Finalist" />
+                <div class="stack-caption">Top 10 Finalist</div>
               </div>
 
               <!-- Card Front (Profile Photo) -->
               <div class="stack-card stack-card-front">
                 <img src="assets/images/profile.jpg" alt="Imam Alfan Rahadyan" />
-                <div class="stack-caption">More about me Here!</div>
+                <div class="stack-caption">
+                  <div class="stack-caption-title">View Interactive CV 📄</div>
+                  <div class="stack-caption-sub">Career, Skills & Credentials</div>
+                </div>
               </div>
 
             </button>
@@ -151,55 +161,98 @@
 
         </div>
 
-        <!-- Bottom: 3D Isometric Treasure Box ("Open the box!") -->
+        <!-- Bottom: Flat 2D Interactive Surprise Gift Box ("Open the box!") -->
         <div class="hero-bottom-box-area">
-          <button id="open-box-btn" class="pbox-btn" aria-label="Open the box to explore projects">
+          <div id="gift-box-wrapper" class="flat-gift-wrapper" role="button" tabindex="0" aria-label="Open surprise gift box to explore portfolio">
             
-            <!-- 3D CSS Box Scene -->
-            <div class="pbox-scene" aria-hidden="true">
-              <!-- Box Lid -->
-              <div class="pbox-lid">
-                <div class="pbox-lid__top"></div>
-                <div class="pbox-lid__front"></div>
-                <div class="pbox-lid__left"></div>
-                <div class="pbox-lid__right"></div>
-                <div class="pbox-lid__back"></div>
+            <!-- Bursting Easter Egg Surprises (Fly out when opened) -->
+            <div id="gift-easter-burst" class="gift-easter-burst" aria-hidden="true">
+              <span class="easter-item easter-1" title="Viral Media Growth">🚀</span>
+              <span class="easter-item easter-2" title="26.4M+ Views Content">🎬</span>
+              <span class="easter-item easter-3" title="Web3 Community COO">💎</span>
+              <span class="easter-item easter-4" title="IPB Stock Finalist">📈</span>
+              <span class="easter-item easter-5" title="UGM 1st Place Winner">🏆</span>
+              <span class="easter-item easter-6" title="GPA 3.82 Cum Laude">🎓</span>
+              <span class="easter-item easter-7" title="Creative Design">🎨</span>
+              <span class="easter-item easter-8" title="Sparkles">✨</span>
+              <span class="easter-item easter-9" title="Stars">⭐</span>
+              <!-- Mini Polaroid Preview Bursting Out -->
+              <div class="easter-item easter-polaroid">
+                <img src="assets/images/frost-analytics.png" alt="Portfolio Sneak Peek" />
               </div>
+            </div>
 
-              <!-- Box Body -->
-              <div class="pbox-body">
-                <div class="pbox-body__front"></div>
-                <div class="pbox-body__left"></div>
-                <div class="pbox-body__right"></div>
-                <div class="pbox-body__bottom"></div>
-                <div class="pbox-body__back"></div>
+            <!-- Billowing Cartoon Smoke & Poof Clouds -->
+            <div id="gift-smoke-burst" class="gift-smoke-burst" aria-hidden="true">
+              <div class="smoke-puff puff-1"></div>
+              <div class="smoke-puff puff-2"></div>
+              <div class="smoke-puff puff-3"></div>
+              <div class="smoke-puff puff-4"></div>
+              <div class="smoke-puff puff-5"></div>
+              <div class="smoke-puff puff-6"></div>
+            </div>
 
-                <!-- Inner Card Peeking Out -->
-                <div class="pbox-inner">
-                  <div class="pbox-inner-card"></div>
+            <!-- Inner Radiant Glow Ray -->
+            <div class="gift-inner-ray" aria-hidden="true"></div>
+
+            <!-- Flat 2D Vector Gift Box Graphic -->
+            <div class="flat-gift-art">
+              <!-- Flat Gift Lid (Pops up and rotates on click) -->
+              <div class="flat-gift-lid">
+                <!-- Flat Ribbon Bow on Top -->
+                <div class="flat-ribbon-bow">
+                  <div class="bow-loop bow-loop-left"></div>
+                  <div class="bow-center-knot"></div>
+                  <div class="bow-loop bow-loop-right"></div>
+                  <div class="bow-ribbon-tail bow-tail-left"></div>
+                  <div class="bow-ribbon-tail bow-tail-right"></div>
+                </div>
+
+                <!-- Lid Rim Bar -->
+                <div class="flat-lid-bar">
+                  <div class="flat-lid-stripe"></div>
                 </div>
               </div>
+
+              <!-- Flat Gift Base Body -->
+              <div class="flat-gift-body">
+                <!-- Vertical Purple Ribbon -->
+                <div class="flat-body-stripe"></div>
+                <!-- Peeking Card Edge -->
+                <div class="flat-peek-card">
+                  <span>PORTFOLIO</span>
+                </div>
+              </div>
+
+              <!-- Flat Drop Shadow Pill -->
+              <div class="flat-shadow-pill"></div>
             </div>
 
-            <!-- Glowing Action Pill Label -->
-            <div class="pbox-label">
+            <!-- Action Button Label -->
+            <button id="open-box-btn" class="flat-gift-label" aria-label="Open the box to explore portfolio">
               <span>Open the box!</span>
               <i data-lucide="sparkles" style="width: 1rem; height: 1rem;"></i>
-            </div>
-          </button>
+            </button>
+
+          </div>
         </div>
 
       </div>
     </section>
 
     <!-- ============================================================
-         PANEL 2: "EACH OF MY STEPS" (Scattered Polaroid Gallery)
+         PANEL 2: "PORTFOLIO & SELECTED WORKS" (Opened from the Gift Box)
          ============================================================ -->
     <section id="panel-steps" class="panel-view">
       <div class="steps-layout">
         
         <div class="steps-header">
+          <div class="steps-badge-pill">
+            <i data-lucide="sparkles" style="width: 0.85rem; height: 0.85rem; color: var(--accent-orange);"></i>
+            <span>PORTFOLIO SHOWCASE</span>
+          </div>
           <h2 class="steps-headline">EACH OF MY STEPS</h2>
+          <p class="steps-subheadline">Curated digital media, Web3 operations, and visual design milestones bursting out from the surprise gift box.</p>
         </div>
 
         <!-- Dynamic Scattered Polaroid Grid -->
@@ -211,237 +264,549 @@
     </section>
 
     <!-- ============================================================
-         PANEL 3: "MORE ABOUT ME AND MY JOURNEY" (Swipeable Tabbed View)
+         PANEL 3: "INTERACTIVE CV & RESUME" (Opened from Polaroid Stack)
          ============================================================ -->
     <section id="panel-about" class="panel-view">
-      <div class="about-layout">
+      <div class="cv-page-layout">
         
-        <div class="about-header">
-          <h2 class="about-headline">MORE ABOUT ME AND MY JOURNEY</h2>
+        <!-- CV Header Hero -->
+        <div class="cv-header-area">
+          <div class="cv-badge-pill">
+            <i data-lucide="file-badge-2" style="width: 0.85rem; height: 0.85rem; color: var(--accent-orange);"></i>
+            <span>CURRICULUM VITAE & PROFESSIONAL DOSSIER</span>
+          </div>
+
+          <h2 class="cv-person-name">Imam Alfan Rahadyan, S.Sos</h2>
+          <div class="cv-person-headline">
+            Digital Creator & Operations Lead • Web3 Community Co-Founder • International Relations (GPA 3.82 Cum Laude)
+          </div>
+
+          <!-- Contact Meta Row -->
+          <div class="cv-meta-row">
+            <span class="cv-meta-item">
+              <i data-lucide="map-pin" style="width: 0.85rem; height: 0.85rem; color: var(--accent-orange);"></i>
+              <span>Kendal, Central Java, Indonesia</span>
+            </span>
+            <a href="mailto:alfan.rahadyan10@gmail.com" class="cv-meta-item cv-meta-link">
+              <i data-lucide="mail" style="width: 0.85rem; height: 0.85rem; color: var(--accent-orange);"></i>
+              <span>alfan.rahadyan10@gmail.com</span>
+            </a>
+            <a href="https://wa.me/6289675264517" target="_blank" rel="noopener noreferrer" class="cv-meta-item cv-meta-link">
+              <i data-lucide="phone" style="width: 0.85rem; height: 0.85rem; color: var(--accent-orange);"></i>
+              <span>+62 896 7526 4517</span>
+            </a>
+            <span class="cv-meta-item">
+              <i data-lucide="globe" style="width: 0.85rem; height: 0.85rem; color: var(--accent-purple);"></i>
+              <span>Indonesian (Native) • English (B2 CEFR)</span>
+            </span>
+          </div>
+
+          <!-- Direct Action Buttons Toolbar -->
+          <div class="cv-actions-toolbar">
+            <a href="assets/cv/Alfan_CV.pdf" download class="cv-btn-primary" title="Download Official PDF CV">
+              <i data-lucide="download" style="width: 1rem; height: 1rem;"></i>
+              <span>Download PDF CV</span>
+            </a>
+
+            <button type="button" class="cv-btn-secondary" onclick="showPanel('steps'); return false;" title="Explore Portfolio Projects">
+              <i data-lucide="sparkles" style="width: 1rem; height: 1rem; color: var(--accent-orange);"></i>
+              <span>Explore Portfolio Works</span>
+            </button>
+
+            <a href="https://wa.me/6289675264517" target="_blank" rel="noopener noreferrer" class="cv-btn-secondary" title="Chat via WhatsApp">
+              <i data-lucide="message-circle" style="width: 1rem; height: 1rem; color: #10b981;"></i>
+              <span>WhatsApp Chat</span>
+            </a>
+          </div>
         </div>
 
-        <!-- Journey Category Switcher Tabs -->
-        <div class="journey-tabs-bar">
-          <button class="journey-tab-btn active" data-tab="experience">
-            <span>💼</span>
-            <span>Experience</span>
-          </button>
-          
-          <button class="journey-tab-btn" data-tab="organization">
-            <span>🏛️</span>
-            <span>Organization & Web3</span>
-          </button>
+        <!-- Executive Stat Counter Grid -->
+        <div class="cv-metrics-strip">
+          <div class="cv-metric-box">
+            <div class="cv-metric-val">26.4M+</div>
+            <div class="cv-metric-lbl">Monthly Views (Frost.One)</div>
+          </div>
+          <div class="cv-metric-box">
+            <div class="cv-metric-val">68K+</div>
+            <div class="cv-metric-lbl">Organic YouTube Subs</div>
+          </div>
+          <div class="cv-metric-box">
+            <div class="cv-metric-val">1,000+</div>
+            <div class="cv-metric-lbl">Web3 Scaled Members</div>
+          </div>
+          <div class="cv-metric-box">
+            <div class="cv-metric-val">GPA 3.82</div>
+            <div class="cv-metric-lbl">Cum Laude • Hubungan Internasional</div>
+          </div>
+          <div class="cv-metric-box">
+            <div class="cv-metric-val">Juara 1 & Top 10</div>
+            <div class="cv-metric-lbl">FK-KMK UGM & IPB Finance</div>
+          </div>
+          <div class="cv-metric-box">
+            <div class="cv-metric-val">CEFR B2</div>
+            <div class="cv-metric-lbl">Duolingo Certified (110/160)</div>
+          </div>
+        </div>
 
-          <button class="journey-tab-btn" data-tab="education">
-            <span>🎓</span>
-            <span>Education</span>
+        <!-- Interactive CV View Mode Switcher -->
+        <div class="cv-view-toggle-bar">
+          <button id="cv-mode-doc-btn" class="cv-view-pill active" onclick="switchCvMode('document'); return false;">
+            <i data-lucide="file-text" style="width: 0.9rem; height: 0.9rem;"></i>
+            <span>Executive CV Document</span>
           </button>
-
-          <button class="journey-tab-btn" data-tab="achievement">
-            <span>🏆</span>
-            <span>Achievement & Awards</span>
+          <button id="cv-mode-timeline-btn" class="cv-view-pill" onclick="switchCvMode('timeline'); return false;">
+            <i data-lucide="layers" style="width: 0.9rem; height: 0.9rem;"></i>
+            <span>Categorized Timeline</span>
           </button>
         </div>
 
-        <!-- Tab Card Container -->
-        <div class="journey-card-container">
+        <!-- ==============================================
+             MODE 1: EXECUTIVE CV DOCUMENT VIEW
+             ============================================== -->
+        <div id="cv-view-document" class="cv-doc-container active">
           
-          <!-- TAB 1: EXPERIENCE -->
-          <div class="journey-tab-panel active" data-panel="experience">
+          <!-- Left Column: Profile Card, Competencies & Toolkit -->
+          <div class="cv-doc-sidebar">
             
-            <!-- Item 1: Frost.One -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/frost-analytics.png" alt="Frost.One" />
+            <!-- Photo & Bio Card -->
+            <div class="cv-sidebar-card">
+              <div class="cv-avatar-wrap">
+                <img src="assets/images/profile.jpg" alt="Imam Alfan Rahadyan" />
               </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Content Creator & Producer</div>
-                  <div class="timeline-date">Aug 2023 — Present</div>
-                </div>
-                <div class="timeline-org">Frost.One (Faceless YouTube Media)</div>
-                <ul class="timeline-desc-list">
-                  <li>Grew organic audience from 0 to 43k+ subscribers within 5 months (Aug 2023 – Jan 2024).</li>
-                  <li>Increased subscribers by 58.14% reaching 68,000+ current subscribers with 26.4M+ views in 28 days.</li>
-                  <li>Engineered high-retention short-form videos with consistent 95%+ watch time retention.</li>
-                  <li>Managed end-to-end creative cycles: viral hook writing, script research, and post-production editing.</li>
-                </ul>
+              <h3 class="cv-card-title" style="margin-top: 0.85rem; text-align: center;">Imam Alfan Rahadyan</h3>
+              <p class="cv-card-sub" style="text-align: center; color: var(--accent-orange); font-weight: 700;">Digital Creator & Operations Lead</p>
+              <p class="cv-sidebar-text">
+                Versatile creator and operations specialist combining International Relations research rigor, viral hook retention engineering (95%+), and Web3 community scaling.
+              </p>
+            </div>
+
+            <!-- Core Competencies -->
+            <div class="cv-sidebar-card">
+              <h4 class="cv-sidebar-heading">
+                <i data-lucide="check-circle-2" style="width: 1rem; height: 1rem; color: var(--accent-orange);"></i>
+                <span>Core Competencies</span>
+              </h4>
+              <div class="cv-skill-chips-wrap">
+                <span class="cv-skill-chip">Viral Retention (95%+)</span>
+                <span class="cv-skill-chip">YouTube Analytics</span>
+                <span class="cv-skill-chip">Scriptwriting & Story</span>
+                <span class="cv-skill-chip">Web3 Community Ops</span>
+                <span class="cv-skill-chip">Exchange Partnerships</span>
+                <span class="cv-skill-chip">Vector Illustration</span>
+                <span class="cv-skill-chip">Editorial Layout</span>
+                <span class="cv-skill-chip">Stock & Market Analysis</span>
+                <span class="cv-skill-chip">Bilingual Host (EN/ID)</span>
               </div>
             </div>
 
-            <!-- Item 2: GPP Jember -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/frost-short.png" alt="GPP Jember" />
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Videographer, Editor & Regional Team Leader</div>
-                  <div class="timeline-date">Jun 2023 — Aug 2023</div>
+            <!-- Software & Tools -->
+            <div class="cv-sidebar-card">
+              <h4 class="cv-sidebar-heading">
+                <i data-lucide="tool" style="width: 1rem; height: 1rem; color: var(--accent-purple);"></i>
+                <span>Tools & Software</span>
+              </h4>
+              <div class="cv-tools-list">
+                <div class="cv-tool-row">
+                  <span class="cv-tool-cat">Video:</span>
+                  <span class="cv-tool-names">Premiere Pro, After Effects, CapCut</span>
                 </div>
-                <div class="timeline-org">Gerakan Peduli Perempuan Jember</div>
-                <ul class="timeline-desc-list">
-                  <li>Led a 5-member regional team executing community advocacy and education programs in Tegalgede, Jember.</li>
-                  <li>Captured and edited multimedia video stories covering maternal-infant health and women empowerment.</li>
-                </ul>
+                <div class="cv-tool-row">
+                  <span class="cv-tool-cat">Design:</span>
+                  <span class="cv-tool-names">Photoshop, Illustrator, Figma</span>
+                </div>
+                <div class="cv-tool-row">
+                  <span class="cv-tool-cat">Ops & Data:</span>
+                  <span class="cv-tool-names">YouTube Studio, Notion, Excel</span>
+                </div>
               </div>
             </div>
 
-            <!-- Item 3: Sneztaz Magazine -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/art-landscape.png" alt="Sneztaz Magazine" />
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Designer & Layout Artist</div>
-                  <div class="timeline-date">2018 — 2019</div>
+            <!-- Languages -->
+            <div class="cv-sidebar-card">
+              <h4 class="cv-sidebar-heading">
+                <i data-lucide="languages" style="width: 1rem; height: 1rem; color: var(--accent-orange);"></i>
+                <span>Languages</span>
+              </h4>
+              <div class="cv-lang-item">
+                <div class="cv-lang-top">
+                  <span style="font-weight: 700;">Indonesian</span>
+                  <span class="cv-lang-level">Native</span>
                 </div>
-                <div class="timeline-org">Sneztaz Magazine (Media)</div>
-                <ul class="timeline-desc-list">
-                  <li>Developed innovative visual layouts and creative typography to elevate editorial branding.</li>
-                  <li>Collaborated across cross-functional teams to maintain brand consistency and visual engagement.</li>
-                </ul>
+              </div>
+              <div class="cv-lang-item" style="margin-top: 0.5rem;">
+                <div class="cv-lang-top">
+                  <span style="font-weight: 700;">English</span>
+                  <span class="cv-lang-level">CEFR B2 (110/160)</span>
+                </div>
+                <div style="font-size: 0.72rem; color: var(--text-subtle); margin-top: 0.15rem;">Duolingo English Test Certified</div>
               </div>
             </div>
 
           </div>
 
-          <!-- TAB 2: ORGANIZATION & COMMUNITY -->
-          <div class="journey-tab-panel" data-panel="organization">
+          <!-- Right Column: Career History, Leadership & Education -->
+          <div class="cv-doc-main">
             
-            <!-- Item 1: Teman Crypto Indonesia -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/teman-crypto.png" alt="Teman Crypto" />
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Co-Founder & COO</div>
-                  <div class="timeline-date">Sep 2020 — Nov 2024</div>
+            <!-- Professional Experience Section -->
+            <div class="cv-main-section">
+              <h3 class="cv-section-title">
+                <i data-lucide="briefcase" style="width: 1.15rem; height: 1.15rem; color: var(--accent-orange);"></i>
+                <span>Professional Experience</span>
+              </h3>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Lead Content Creator & Producer</h4>
+                    <div class="cv-item-company">Frost.One • Faceless YouTube Digital Media</div>
+                  </div>
+                  <div class="cv-item-date">Aug 2023 — Present</div>
                 </div>
-                <div class="timeline-org">Teman Crypto Indonesia (Web3 Community)</div>
-                <ul class="timeline-desc-list">
-                  <li>Co-founded and scaled an active crypto community from 0 to 1,000+ members across Telegram and socials.</li>
+                <ul class="cv-item-bullets">
+                  <li>Built and scaled channel organically from 0 to 43,000+ subscribers within 5 months through viral retention-engineered short-form videos.</li>
+                  <li>Surged by 58.14% to 68,000+ active subscribers, generating 26,438,606 views and 207,500 watch hours in a single 28-day window.</li>
+                  <li>Engineered high-retention content pipelines maintaining an average watch retention rate of 95%+ on videos surpassing 1,000,000+ views.</li>
+                  <li>Full production lifecycle ownership: keyword research, storytelling scripting, kinetic typography, voiceover syncing, and packaging.</li>
+                </ul>
+              </div>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Co-Founder & Chief Operating Officer (COO)</h4>
+                    <div class="cv-item-company">Teman Crypto Indonesia • Web3 Grassroots Community</div>
+                  </div>
+                  <div class="cv-item-date">Sep 2020 — Nov 2024</div>
+                </div>
+                <ul class="cv-item-bullets">
+                  <li>Co-founded and scaled crypto educational community from 0 to 1,000+ active members across Telegram, Twitter, and Discord.</li>
                   <li>Official Partner of Binance Community Summit 2021 (CeFi vs DeFi) in collaboration with Tokocrypto.</li>
-                  <li>Hosted official AMA sessions and trading competitions with major exchanges: Bybit, Bitget, and HyperJump.</li>
-                  <li>Coordinated educational crypto onboarding, bounties, and organized social donation charity drives (baksos).</li>
+                  <li>Spearheaded partnerships and hosted live AMAs and trading leagues with leading global exchanges: Bybit, Bitget, and HyperJump.</li>
+                  <li>Coordinated educational airdrop research briefs, bounties, and community social charity donation drives (baksos).</li>
+                </ul>
+              </div>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Regional Team Leader, Videographer & Editor</h4>
+                    <div class="cv-item-company">Gerakan Peduli Perempuan Jember • Community Media</div>
+                  </div>
+                  <div class="cv-item-date">Jun 2023 — Aug 2023</div>
+                </div>
+                <ul class="cv-item-bullets">
+                  <li>Led a 5-member regional team executing maternal-infant health advocacy and education modules in Tegalgede, Jember.</li>
+                  <li>Produced, directed, and edited multimedia video stories translating legal and health concepts into empathetic content.</li>
+                </ul>
+              </div>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Designer & Creative Layout Artist</h4>
+                    <div class="cv-item-company">Sneztaz Magazine & Commercial Artworks</div>
+                  </div>
+                  <div class="cv-item-date">2018 — 2022</div>
+                </div>
+                <ul class="cv-item-bullets">
+                  <li>Designed commercial merchandise patterns for Kintakun x Lazada campaign (#darikamar).</li>
+                  <li>Created scientific character mascot illustrations for Indonesian Institute of Sciences (LIPI).</li>
+                  <li>Developed editorial publication layouts and typography systems for Sneztaz Magazine.</li>
                 </ul>
               </div>
             </div>
 
-            <!-- Item 2: PMM Jambi -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/pmm-jambi.jpg" alt="PMM Kemendikbud" />
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Community Outreach & Interactive Teaching</div>
-                  <div class="timeline-date">Jul 2021 — Dec 2021</div>
+            <!-- Education & Academic Distinctions -->
+            <div class="cv-main-section">
+              <h3 class="cv-section-title">
+                <i data-lucide="graduation-cap" style="width: 1.15rem; height: 1.15rem; color: var(--accent-purple);"></i>
+                <span>Education & Academic Credentials</span>
+              </h3>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Bachelor of Social Science (S.Sos) in International Relations</h4>
+                    <div class="cv-item-company">Universitas Jember • GPA: 3.82 / 4.00 (Cum Laude Distinction)</div>
+                  </div>
+                  <div class="cv-item-date">2020 — 2024</div>
                 </div>
-                <div class="timeline-org">Pertukaran Mahasiswa Merdeka (Suku Anak Dalam)</div>
-                <ul class="timeline-desc-list">
-                  <li>Led field visits and delivered interactive teaching modules for indigenous children of Suku Anak Dalam in Jambi.</li>
-                  <li>Fostered cross-cultural immersion and documented community empowerment initiatives.</li>
+                <ul class="cv-item-bullets">
+                  <li>Graduated with Cum Laude honors from Faculty of Social and Political Sciences (FISIP).</li>
+                  <li>Undergraduate Thesis: <em>"Analisis Peluang Investasi Industri Halal Indonesia di Uni Emirat Arab (2018–2022)"</em>.</li>
+                  <li>Active in Korps Mahasiswa Hubungan Internasional (KOMAHI UNEJ) diplomacy simulations and public forums.</li>
                 </ul>
+              </div>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Domestic Student Exchange Program (PMM Kemendikbud)</h4>
+                    <div class="cv-item-company">Universitas Jambi • Distinction Grade "A" (Flagship Scholarship)</div>
+                  </div>
+                  <div class="cv-item-date">Jul 2021 — Dec 2021</div>
+                </div>
+                <ul class="cv-item-bullets">
+                  <li>Awarded prestigious national flagship scholarship by Kemendikbud-LPDP Merdeka Belajar.</li>
+                  <li>Coursework: International Trade & Business, Monetary Economics, Capital Markets, Agrarian Politics.</li>
+                  <li>Organized on-site social immersion visits and interactive learning modules with children of indigenous Suku Anak Dalam.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Awards & Honors -->
+            <div class="cv-main-section">
+              <h3 class="cv-section-title">
+                <i data-lucide="trophy" style="width: 1.15rem; height: 1.15rem; color: var(--accent-orange);"></i>
+                <span>Honors, Competitions & Certifications</span>
+              </h3>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">1st Place Winner (Juara 1 Nasional) • Panateen Poster Competition</h4>
+                    <div class="cv-item-company">FK-KMK Universitas Gadjah Mada (UGM) • Health Communication</div>
+                  </div>
+                  <div class="cv-item-date">2019</div>
+                </div>
+              </div>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Rank 10 Nationwide Finalist • Stock Trading Championship</h4>
+                    <div class="cv-item-company">IPB University Finance Fest 2022 • Capital Markets & Risk Management</div>
+                  </div>
+                  <div class="cv-item-date">2022</div>
+                </div>
+              </div>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Duolingo English Proficiency • CEFR B2 Certified</h4>
+                    <div class="cv-item-company">Official Test Score 110/160 • Upper-Intermediate Bilingual Distinction</div>
+                  </div>
+                  <div class="cv-item-date">Verified</div>
+                </div>
               </div>
             </div>
 
           </div>
 
-          <!-- TAB 3: EDUCATION -->
-          <div class="journey-tab-panel" data-panel="education">
+        </div>
+
+        <!-- ==============================================
+             MODE 2: CATEGORIZED TIMELINE VIEW
+             ============================================== -->
+        <div id="cv-view-timeline" class="cv-timeline-container">
+          
+          <!-- Category Tabs Bar -->
+          <div class="journey-tabs-bar">
+            <button class="journey-tab-btn active" data-tab="experience">
+              <span>💼</span>
+              <span>Work Experience</span>
+            </button>
             
-            <!-- Degree 1: UNEJ -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box" style="background: #fff; font-weight: 800; font-size: 1.1rem; color: var(--accent-orange);">
-                UJ
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Bachelor of Social Science (S.Sos)</div>
-                  <div class="timeline-date">Jul 2020 — Apr 2024</div>
-                </div>
-                <div class="timeline-org">Universitas Jember • GPA: 3.82 / 4.00 (Cum Laude)</div>
-                <ul class="timeline-desc-list">
-                  <li>Major: International Relations (Ilmu Hubungan Internasional).</li>
-                  <li>Core Focus: Global Diplomacy, International Political Economy, Communications & Digital Community Ecosystems.</li>
-                </ul>
-              </div>
-            </div>
+            <button class="journey-tab-btn" data-tab="organization">
+              <span>🏛️</span>
+              <span>Organization & Web3</span>
+            </button>
 
-            <!-- Degree 2: UNJA Exchange -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box" style="background: #fff; font-weight: 800; font-size: 1.1rem; color: var(--accent-purple);">
-                PMM
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Domestic Student Exchange Program</div>
-                  <div class="timeline-date">Jul 2021 — Dec 2021</div>
-                </div>
-                <div class="timeline-org">Universitas Jambi • Grade: A (Flagship Scholarship)</div>
-                <ul class="timeline-desc-list">
-                  <li>Selected for Kemendikbud Merdeka Belajar fully funded national flagship exchange program.</li>
-                  <li>Courses: International Trade & Business, Monetary Economics, Capital Markets & Portfolio Management, Agrarian Politics.</li>
-                </ul>
-              </div>
-            </div>
+            <button class="journey-tab-btn" data-tab="education">
+              <span>🎓</span>
+              <span>Formal Education</span>
+            </button>
 
+            <button class="journey-tab-btn" data-tab="achievement">
+              <span>🏆</span>
+              <span>Honors & Awards</span>
+            </button>
           </div>
 
-          <!-- TAB 4: ACHIEVEMENT & AWARDS -->
-          <div class="journey-tab-panel" data-panel="achievement">
+          <!-- Tab Content Panels -->
+          <div class="journey-card-container">
             
-            <!-- Award 1: IPB -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/ipb-finalist.png" alt="IPB Finalist" />
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Finalist of IPB University Finance Fest</div>
-                  <div class="timeline-date">2022</div>
+            <!-- TAB 1: WORK EXPERIENCE -->
+            <div class="journey-tab-panel active" data-panel="experience">
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/frost-analytics.png" alt="Frost.One" />
                 </div>
-                <div class="timeline-org">Institut Pertanian Bogor (IPB)</div>
-                <ul class="timeline-desc-list">
-                  <li>Ranked 10th out of 350+ nationwide competitors in a high-intensity 2-week active stock trading championship.</li>
-                </ul>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Lead Content Creator & Producer</div>
+                    <div class="timeline-date">Aug 2023 — Present</div>
+                  </div>
+                  <div class="timeline-org">Frost.One (Faceless YouTube Media)</div>
+                  <ul class="timeline-desc-list">
+                    <li>Grew organic audience from 0 to 43,000+ subscribers within 5 months.</li>
+                    <li>Surged to 68,000+ active subscribers with 26.4M+ views in a single 28-day window.</li>
+                    <li>Engineered high-retention short-form videos with consistent 95%+ watch retention rate.</li>
+                    <li>Full creative control: viral hook design, narrative scriptwriting, audio leveling, and thumbnail packaging.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/frost-short.png" alt="GPP Jember" />
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Videographer, Editor & Regional Team Leader</div>
+                    <div class="timeline-date">Jun 2023 — Aug 2023</div>
+                  </div>
+                  <div class="timeline-org">Gerakan Peduli Perempuan Jember</div>
+                  <ul class="timeline-desc-list">
+                    <li>Led a 5-member regional team executing maternal-infant health education in Tegalgede, Jember.</li>
+                    <li>Captured and edited empathetic advocacy video stories distributed to grassroots communities.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/art-landscape.png" alt="Sneztaz Magazine" />
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Designer & Layout Artist</div>
+                    <div class="timeline-date">2018 — 2019</div>
+                  </div>
+                  <div class="timeline-org">Sneztaz Magazine (Media)</div>
+                  <ul class="timeline-desc-list">
+                    <li>Developed creative editorial layouts and typography systems to elevate publication aesthetic.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <!-- Award 2: UGM -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/ugm-poster.jpg" alt="UGM Winner" />
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">Winner of Panateen Poster Competition</div>
-                  <div class="timeline-date">2019</div>
+            <!-- TAB 2: ORGANIZATION & WEB3 -->
+            <div class="journey-tab-panel" data-panel="organization">
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/teman-crypto.png" alt="Teman Crypto" />
                 </div>
-                <div class="timeline-org">FK-KMK Universitas Gadjah Mada (UGM)</div>
-                <ul class="timeline-desc-list">
-                  <li>1st Place Winner (Juara 1) nationwide in the public health poster design competition.</li>
-                </ul>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Co-Founder & COO</div>
+                    <div class="timeline-date">Sep 2020 — Nov 2024</div>
+                  </div>
+                  <div class="timeline-org">Teman Crypto Indonesia (Web3 Community)</div>
+                  <ul class="timeline-desc-list">
+                    <li>Co-founded and scaled grassroots community from 0 to 1,000+ members across Telegram and socials.</li>
+                    <li>Official Partner of Binance Community Summit 2021 (CeFi vs DeFi) alongside Tokocrypto.</li>
+                    <li>Spearheaded partnerships and hosted live AMAs with leading global crypto exchanges: Bybit, Bitget, and HyperJump.</li>
+                    <li>Coordinated educational onboarding, crypto research briefs, and community charity donation drives (baksos).</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/pmm-jambi.jpg" alt="PMM Kemendikbud" />
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Community Outreach & Interactive Teaching</div>
+                    <div class="timeline-date">Jul 2021 — Dec 2021</div>
+                  </div>
+                  <div class="timeline-org">Pertukaran Mahasiswa Merdeka (Suku Anak Dalam Outreach)</div>
+                  <ul class="timeline-desc-list">
+                    <li>Led field visits and delivered interactive teaching modules for indigenous children of Suku Anak Dalam in Jambi.</li>
+                    <li>Documented cross-cultural immersion and community empowerment programs.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <!-- Award 3: Duolingo -->
-            <div class="timeline-item">
-              <div class="timeline-logo-box">
-                <img src="assets/images/duolingo-cert.png" alt="Duolingo B2" />
-              </div>
-              <div class="timeline-details">
-                <div class="timeline-header-row">
-                  <div class="timeline-role">EF SET / Duolingo English Proficiency</div>
-                  <div class="timeline-date">2022 — 2024</div>
+            <!-- TAB 3: FORMAL EDUCATION -->
+            <div class="journey-tab-panel" data-panel="education">
+              <div class="timeline-item">
+                <div class="timeline-logo-box" style="background: #fff; font-weight: 800; font-size: 1.1rem; color: var(--accent-orange); display: flex; align-items: center; justify-content: center;">
+                  UJ
                 </div>
-                <div class="timeline-org">Score 110/160 • CEFR B2 (Upper-Intermediate)</div>
-                <ul class="timeline-desc-list">
-                  <li>Certified B2 proficiency for international cross-border collaboration and bilingual community hosting.</li>
-                </ul>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Bachelor of Social Science (S.Sos)</div>
+                    <div class="timeline-date">Jul 2020 — Apr 2024</div>
+                  </div>
+                  <div class="timeline-org">Universitas Jember • GPA: 3.82 / 4.00 (Cum Laude Distinction)</div>
+                  <ul class="timeline-desc-list">
+                    <li>Major: International Relations (Ilmu Hubungan Internasional), FISIP.</li>
+                    <li>Undergraduate Thesis: "Analisis Peluang Investasi Industri Halal Indonesia di Uni Emirat Arab (2018–2022)".</li>
+                    <li>Core Focus: Global Diplomacy, International Political Economy, Communications & Digital Community Ecosystems.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-logo-box" style="background: #fff; font-weight: 800; font-size: 1.1rem; color: var(--accent-purple); display: flex; align-items: center; justify-content: center;">
+                  PMM
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Domestic Student Exchange Program</div>
+                    <div class="timeline-date">Jul 2021 — Dec 2021</div>
+                  </div>
+                  <div class="timeline-org">Universitas Jambi • Grade Distinction "A" (Kemendikbud Scholarship)</div>
+                  <ul class="timeline-desc-list">
+                    <li>Selected for Kemendikbud-LPDP Merdeka Belajar fully funded national flagship exchange.</li>
+                    <li>Coursework: International Trade, Monetary Economics, Capital Markets & Portfolio Theory, Agrarian Politics.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 4: HONORS & AWARDS -->
+            <div class="journey-tab-panel" data-panel="achievement">
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/ugm-poster.jpg" alt="UGM Winner" />
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">1st Place Winner (Juara 1 Nasional) • Panateen Competition</div>
+                    <div class="timeline-date">2019</div>
+                  </div>
+                  <div class="timeline-org">FK-KMK Universitas Gadjah Mada (UGM)</div>
+                  <ul class="timeline-desc-list">
+                    <li>1st Place Winner nationwide in the public health communication and poster design championship.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/ipb-finalist.png" alt="IPB Finalist" />
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Rank 10 Nationwide Finalist • Stock Trading Championship</div>
+                    <div class="timeline-date">2022</div>
+                  </div>
+                  <div class="timeline-org">IPB University Finance Fest 2022</div>
+                  <ul class="timeline-desc-list">
+                    <li>Ranked 10th out of 350+ nationwide competitors in a high-intensity 2-week active stock trading sprint.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/duolingo-cert.png" alt="Duolingo B2" />
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">EF SET / Duolingo English Proficiency</div>
+                    <div class="timeline-date">Verified</div>
+                  </div>
+                  <div class="timeline-org">Score 110/160 • CEFR B2 (Upper-Intermediate)</div>
+                  <ul class="timeline-desc-list">
+                    <li>Certified B2 proficiency for international cross-border collaboration and bilingual community hosting.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -708,6 +1073,6 @@
     <span id="studio-toast-msg">Changes saved successfully!</span>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
