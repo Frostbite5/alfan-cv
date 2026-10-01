@@ -574,9 +574,69 @@ const availableAssets = [
   { name: "profile.jpg", path: "assets/images/profile.jpg", label: "Alfan Formal Photo" }
 ];
 
+// ============================================================
+// OWNER ADMIN ACCESS CONTROLLER (Only Alfan Can Edit)
+// ============================================================
+const OWNER_SECRET_KEY = "alfan";
+
+function checkStudioAdminAuth() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const adminParam = urlParams.get("admin") || urlParams.get("edit") || urlParams.get("studio") || urlParams.get("key");
+
+  // Check URL query parameter: e.g. ?admin=alfan
+  if (adminParam && adminParam.toLowerCase() === OWNER_SECRET_KEY) {
+    localStorage.setItem("alfan_studio_auth", "true");
+    const cleanUrl = window.location.pathname + window.location.hash;
+    window.history.replaceState({}, document.title, cleanUrl);
+    enableAdminMode(true);
+    return;
+  }
+
+  // Check persisted authorization in localStorage
+  if (localStorage.getItem("alfan_studio_auth") === "true") {
+    enableAdminMode(false);
+  }
+}
+
+function enableAdminMode(showWelcomeToast = false) {
+  document.body.classList.add("admin-mode");
+  if (showWelcomeToast) {
+    showToast("✨ Welcome Alfan! Studio Mode unlocked.");
+  }
+}
+
+function disableAdminMode() {
+  localStorage.removeItem("alfan_studio_auth");
+  document.body.classList.remove("admin-mode");
+  closeStudioModal();
+  showToast("🔒 Studio Mode locked and hidden.");
+}
+
+function promptForAdminPasscode() {
+  if (document.body.classList.contains("admin-mode")) {
+    openStudioModal();
+    return;
+  }
+
+  const input = prompt("🔐 Enter Owner Passcode to unlock Studio Mode:");
+  if (input && input.trim().toLowerCase() === OWNER_SECRET_KEY) {
+    localStorage.setItem("alfan_studio_auth", "true");
+    enableAdminMode(true);
+    openStudioModal();
+  } else if (input !== null) {
+    alert("Incorrect passcode. Studio mode remains locked.");
+  }
+}
+
 let currentStudioProjectId = null;
 
 function openStudioModal(projectId) {
+  // If not authenticated, prompt for passcode first
+  if (!document.body.classList.contains("admin-mode")) {
+    promptForAdminPasscode();
+    return;
+  }
+
   const modal = document.getElementById("studio-modal");
   if (!modal) return;
 
@@ -853,6 +913,13 @@ function showToast(message) {
 // 10. ESCAPE KEY & GLOBAL KEYBOARD SHORTCUTS
 function setupKeyboardNavigation() {
   document.addEventListener("keydown", (e) => {
+    // Secret Owner Shortcut: Ctrl + Shift + E (or Cmd + Shift + E)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "E" || e.key === "e")) {
+      e.preventDefault();
+      promptForAdminPasscode();
+      return;
+    }
+
     if (e.key === "Escape") {
       const studioModal = document.getElementById("studio-modal");
       const exportModal = document.getElementById("export-modal");
@@ -873,6 +940,7 @@ function setupKeyboardNavigation() {
 
 // 11. INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
+  checkStudioAdminAuth();
   initParticleCanvas();
   updateTypewriter();
   renderPolaroidGallery();
@@ -986,6 +1054,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyCustomImgBtn = document.getElementById("studio-apply-custom-img-btn");
   if (applyCustomImgBtn) {
     applyCustomImgBtn.addEventListener("click", applyCustomCoverImage);
+  }
+
+  // Lock Studio button
+  const studioLockBtn = document.getElementById("studio-lock-btn");
+  if (studioLockBtn) {
+    studioLockBtn.addEventListener("click", disableAdminMode);
+  }
+
+  // Secret triple-click on brand logo [ ALFAN ] to unlock Studio
+  const brandLogo = document.getElementById("brand-box-btn");
+  if (brandLogo) {
+    let logoClicks = 0;
+    let logoTimer = null;
+    brandLogo.addEventListener("click", () => {
+      logoClicks++;
+      clearTimeout(logoTimer);
+      if (logoClicks >= 3) {
+        logoClicks = 0;
+        promptForAdminPasscode();
+      } else {
+        logoTimer = setTimeout(() => { logoClicks = 0; }, 800);
+      }
+    });
   }
 
   if (window.lucide) {

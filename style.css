@@ -1208,12 +1208,27 @@ body {
 }
 
 /* ============================================================
-   VISUAL CONTENT & IMAGE STUDIO MODAL (Canva-like Editor)
+   VISUAL CONTENT & IMAGE STUDIO MODAL (Owner Admin Feature)
    ============================================================ */
+
+/* Security & Access Control: Hide all Studio triggers by default */
+.studio-admin-only {
+  display: none !important;
+}
+.polaroid-edit-badge {
+  display: none !important;
+}
+
+/* When Owner unlocks Admin Mode on <body> */
+body.admin-mode .studio-admin-only {
+  display: inline-flex !important;
+}
+body.admin-mode .polaroid-card .polaroid-edit-badge {
+  display: flex !important;
+}
 
 /* Header Studio Trigger Button */
 .studio-nav-btn {
-  display: flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.42rem 0.85rem;
@@ -1237,7 +1252,6 @@ body {
 
 /* Modal Chip Edit Button */
 .studio-chip-btn {
-  display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   padding: 0.25rem 0.65rem;
@@ -1271,7 +1285,6 @@ body {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.12);
   color: #1e293b;
-  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
@@ -1287,7 +1300,7 @@ body {
   border-color: rgba(255, 255, 255, 0.15);
   color: #f1f5f9;
 }
-.polaroid-card:hover .polaroid-edit-badge {
+body.admin-mode .polaroid-card:hover .polaroid-edit-badge {
   opacity: 1;
   transform: scale(1);
 }

@@ -32,8 +32,8 @@
         <i data-lucide="chevron-left" style="width: 1.25rem; height: 1.25rem;"></i>
       </button>
 
-      <!-- Minimalist Brand Box Logo [ ALFAN ] -->
-      <a href="#" class="brand-box" onclick="showPanel('home'); return false;">
+      <!-- Minimalist Brand Box Logo [ ALFAN ] (Secret triple-click unlocks Studio) -->
+      <a href="#" id="brand-box-btn" class="brand-box" onclick="showPanel('home'); return false;">
         ALFAN
       </a>
     </div>
@@ -49,8 +49,8 @@
         <button class="pill-btn" id="lang-id-btn">ID</button>
       </div>
 
-      <!-- Interactive Visual Content & Image Studio Button -->
-      <button id="open-studio-btn" class="studio-nav-btn" title="Open Visual Content & Image Studio (Canva-like editor)" aria-label="Open Studio">
+      <!-- Interactive Visual Content & Image Studio Button (Owner Admin Only) -->
+      <button id="open-studio-btn" class="studio-nav-btn studio-admin-only" title="Open Visual Content & Image Studio (Owner Only)" aria-label="Open Studio">
         <i data-lucide="palette" style="width: 0.95rem; height: 0.95rem;"></i>
         <span>Studio</span>
       </button>
@@ -472,7 +472,7 @@
       <div class="modal-col-left">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.25rem;">
           <div id="modal-category" class="modal-category-label">Category</div>
-          <button id="modal-edit-this-btn" class="studio-chip-btn" title="Edit this project's images or texts in Studio">
+          <button id="modal-edit-this-btn" class="studio-chip-btn studio-admin-only" title="Edit this project's images or texts in Studio">
             <i data-lucide="edit-3" style="width: 0.75rem; height: 0.75rem;"></i>
             <span>Edit Card</span>
           </button>
@@ -657,6 +657,10 @@
           <button id="studio-export-btn" class="studio-secondary-btn" title="View & Copy clean JavaScript / JSON data">
             <i data-lucide="code" style="width: 0.9rem; height: 0.9rem;"></i>
             <span>Export Code</span>
+          </button>
+          <button id="studio-lock-btn" class="studio-secondary-btn" title="Lock and hide Studio mode on this browser">
+            <i data-lucide="lock" style="width: 0.85rem; height: 0.85rem;"></i>
+            <span>Lock Studio</span>
           </button>
         </div>
 
