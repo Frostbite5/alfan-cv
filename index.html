@@ -49,6 +49,12 @@
         <button class="pill-btn" id="lang-id-btn">ID</button>
       </div>
 
+      <!-- Interactive Visual Content & Image Studio Button -->
+      <button id="open-studio-btn" class="studio-nav-btn" title="Open Visual Content & Image Studio (Canva-like editor)" aria-label="Open Studio">
+        <i data-lucide="palette" style="width: 0.95rem; height: 0.95rem;"></i>
+        <span>Studio</span>
+      </button>
+
       <!-- Theme Switcher (Dark / Light) -->
       <button id="theme-toggle-btn" class="icon-circle-btn" aria-label="Toggle Theme">
         <i data-lucide="moon" style="width: 1.15rem; height: 1.15rem;"></i>
@@ -96,7 +102,11 @@
 
               <!-- LinkedIn -->
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" title="LinkedIn Profile" aria-label="LinkedIn">
-                <i data-lucide="linkedin" style="width: 1.25rem; height: 1.25rem;"></i>
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
               </a>
 
               <!-- Email Direct -->
@@ -106,7 +116,10 @@
 
               <!-- YouTube / Frost.One -->
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" title="YouTube Channel (Frost.One)" aria-label="YouTube">
-                <i data-lucide="youtube" style="width: 1.3rem; height: 1.3rem;"></i>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+                </svg>
               </a>
             </div>
           </div>
@@ -457,7 +470,13 @@
 
       <!-- Left Column: Story & Narrative -->
       <div class="modal-col-left">
-        <div id="modal-category" class="modal-category-label">Category</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.25rem;">
+          <div id="modal-category" class="modal-category-label">Category</div>
+          <button id="modal-edit-this-btn" class="studio-chip-btn" title="Edit this project's images or texts in Studio">
+            <i data-lucide="edit-3" style="width: 0.75rem; height: 0.75rem;"></i>
+            <span>Edit Card</span>
+          </button>
+        </div>
         <h3 id="modal-title" class="modal-main-title">Project Title</h3>
         
         <div id="modal-narrative" style="display: flex; flex-direction: column; gap: 0.85rem;">
@@ -482,6 +501,207 @@
         <!-- Injected by script.js -->
       </div>
     </div>
+  </div>
+
+  <!-- ============================================================
+       CANVA-LIKE INTERACTIVE CONTENT & IMAGE STUDIO MODAL
+       ============================================================ -->
+  <div id="studio-modal" class="modal-backdrop">
+    <div id="studio-backdrop-el" style="position: absolute; inset: 0;"></div>
+
+    <div class="editor-modal-dialog">
+      <!-- Studio Header -->
+      <div class="editor-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="studio-icon-badge">
+            <i data-lucide="sparkles" style="width: 1.15rem; height: 1.15rem; color: #ea580c;"></i>
+          </div>
+          <div>
+            <div class="editor-title">Visual Content & Image Studio</div>
+            <div style="font-size: 0.75rem; color: var(--text-subtle);">Click any image to swap cover/gallery, edit texts live in real-time.</div>
+          </div>
+        </div>
+
+        <button id="studio-close-x" class="modal-close-x" aria-label="Close Studio">
+          <i data-lucide="x" style="width: 1.15rem; height: 1.15rem;"></i>
+        </button>
+      </div>
+
+      <!-- Studio Sub-Nav: Project Picker Dropdown & Quick Stats -->
+      <div class="studio-toolbar">
+        <div style="display: flex; align-items: center; gap: 0.65rem; flex: 1; min-width: 260px;">
+          <label class="editor-label" for="studio-project-select" style="white-space: nowrap; margin: 0;">Project to Edit:</label>
+          <select id="studio-project-select" class="editor-select" style="max-width: 25rem; font-weight: 600;">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span id="studio-save-status" class="studio-save-badge">Ready</span>
+        </div>
+      </div>
+
+      <!-- Studio Body: 2 Columns (Left: PPT Asset Picker, Right: Content Form) -->
+      <div class="studio-body-grid">
+        
+        <!-- Left Column: Canva-like PPT Asset Picker -->
+        <div class="studio-media-panel">
+          <div class="studio-panel-title">
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="images" style="width: 1rem; height: 1rem; color: var(--accent-orange);"></i>
+              <span style="font-weight: 700; font-family: 'Space Grotesk', sans-serif;">PPT Assets Library (25 Images)</span>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--text-subtle);">Hover thumbnail to set Cover or toggle Gallery</span>
+          </div>
+
+          <!-- Current Selection Preview -->
+          <div class="current-selection-box">
+            <div class="current-cover-preview">
+              <span class="preview-mini-label">Active Cover:</span>
+              <div class="current-cover-img-wrap">
+                <img id="studio-cover-preview-img" src="" alt="Active Cover" />
+              </div>
+              <span id="studio-cover-filename" class="preview-filename">image.png</span>
+            </div>
+            <div class="current-gallery-preview">
+              <span class="preview-mini-label">Gallery Stack:</span>
+              <div id="studio-gallery-thumbs" class="gallery-thumbs-row">
+                <!-- Injected thumbnails -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Media Gallery Grid of all 25 PPT images + semantic images -->
+          <div id="studio-asset-grid" class="asset-picker-grid">
+            <!-- Injected by script.js -->
+          </div>
+
+          <!-- Custom Image URL Input -->
+          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+            <label class="editor-label" for="studio-custom-img">Or Custom Image Path / URL:</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <input id="studio-custom-img" type="text" class="editor-input" placeholder="e.g. assets/images/ppt/image13.png" />
+              <button id="studio-apply-custom-img-btn" class="studio-secondary-btn" style="white-space: nowrap;">Set Cover</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Content Form -->
+        <div class="studio-form-panel">
+          <div class="studio-panel-title">
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="file-edit" style="width: 1rem; height: 1rem; color: var(--accent-orange);"></i>
+              <span style="font-weight: 700; font-family: 'Space Grotesk', sans-serif;">Content & Details</span>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--text-subtle);">Auto-updates on change</span>
+          </div>
+
+          <div class="editor-form-group">
+            <label class="editor-label" for="studio-title">Project Title</label>
+            <input id="studio-title" type="text" class="editor-input" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div class="editor-form-group">
+              <label class="editor-label" for="studio-category">Category</label>
+              <input id="studio-category" type="text" class="editor-input" />
+            </div>
+
+            <div class="editor-form-group">
+              <label class="editor-label" for="studio-metric">Metric Badge</label>
+              <input id="studio-metric" type="text" class="editor-input" placeholder="e.g. 26.4M+ Views / Month" />
+            </div>
+          </div>
+
+          <div class="editor-form-group">
+            <label class="editor-label" for="studio-submetric">Sub-Metric Line</label>
+            <input id="studio-submetric" type="text" class="editor-input" placeholder="e.g. 68K+ Subs • 95%+ Retention" />
+          </div>
+
+          <div class="editor-form-group">
+            <label class="editor-label" for="studio-narrative">Story / Narrative (1 paragraph per line break)</label>
+            <textarea id="studio-narrative" rows="4" class="editor-textarea"></textarea>
+          </div>
+
+          <div class="editor-form-group">
+            <label class="editor-label" for="studio-highlights">Key Highlights (1 bullet per line)</label>
+            <textarea id="studio-highlights" rows="3" class="editor-textarea"></textarea>
+          </div>
+
+          <div class="editor-form-group">
+            <label class="editor-label" for="studio-tags">Tags (comma separated)</label>
+            <input id="studio-tags" type="text" class="editor-input" placeholder="Faceless Media, Viral Retention, YouTube" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div class="editor-form-group">
+              <label class="editor-label" for="studio-cta-text">CTA Button Text</label>
+              <input id="studio-cta-text" type="text" class="editor-input" />
+            </div>
+            <div class="editor-form-group">
+              <label class="editor-label" for="studio-cta-link">CTA Button Link</label>
+              <input id="studio-cta-link" type="text" class="editor-input" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Studio Footer -->
+      <div class="editor-footer">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <button id="studio-reset-btn" class="studio-danger-btn" title="Reset all changes back to original defaults">
+            <i data-lucide="rotate-ccw" style="width: 0.9rem; height: 0.9rem;"></i>
+            <span>Reset Defaults</span>
+          </button>
+          <button id="studio-export-btn" class="studio-secondary-btn" title="View & Copy clean JavaScript / JSON data">
+            <i data-lucide="code" style="width: 0.9rem; height: 0.9rem;"></i>
+            <span>Export Code</span>
+          </button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button id="studio-done-btn" class="studio-primary-btn">
+            <i data-lucide="check" style="width: 1rem; height: 1rem;"></i>
+            <span>Save & Apply Changes</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Code Modal -->
+  <div id="export-modal" class="modal-backdrop">
+    <div id="export-backdrop-el" style="position: absolute; inset: 0;"></div>
+    <div class="editor-modal-dialog" style="max-width: 44rem; max-height: 80vh;">
+      <div class="editor-header">
+        <div class="editor-title" style="display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="code-2" style="width: 1.15rem; height: 1.15rem; color: #ea580c;"></i>
+          <span>Export Projects Data</span>
+        </div>
+        <button id="export-close-x" class="modal-close-x">
+          <i data-lucide="x" style="width: 1.15rem; height: 1.15rem;"></i>
+        </button>
+      </div>
+      <div class="editor-body" style="padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
+          Your changes are automatically active and saved in your browser's local storage. To make them permanent for everyone on GitHub and Vercel, copy this clean JavaScript code:
+        </p>
+        <textarea id="export-code-textarea" readonly class="editor-textarea" style="font-family: monospace; font-size: 0.75rem; height: 18rem; white-space: pre;"></textarea>
+      </div>
+      <div class="editor-footer" style="justify-content: flex-end;">
+        <button id="export-copy-btn" class="studio-primary-btn">
+          <i data-lucide="copy" style="width: 0.9rem; height: 0.9rem;"></i>
+          <span>Copy to Clipboard</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="studio-toast" class="studio-toast">
+    <i data-lucide="check-circle-2" style="width: 1.1rem; height: 1.1rem; color: #10b981;"></i>
+    <span id="studio-toast-msg">Changes saved successfully!</span>
   </div>
 
   <script src="script.js"></script>

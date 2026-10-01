@@ -1,7 +1,7 @@
 // Reverse-Engineered didisuhardi.com Architecture for Imam Alfan Rahadyan
 
-// 1. PROJECTS & CASE STUDIES DATA
-const projectsData = [
+// 1. DEFAULT PROJECTS & CASE STUDIES DATA
+const defaultProjectsData = [
   {
     id: "frost-one",
     title: "Frost.One: Scaling Faceless Media",
@@ -207,6 +207,24 @@ const projectsData = [
   }
 ];
 
+// Load persisted user-customized projects or fallback to defaults
+function loadProjectsData() {
+  const saved = localStorage.getItem("alfan_portfolio_projects");
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    } catch (e) {
+      console.warn("Could not parse saved projectsData:", e);
+    }
+  }
+  return JSON.parse(JSON.stringify(defaultProjectsData));
+}
+
+let projectsData = loadProjectsData();
+
 // 2. TYPEWRITER EFFECT (Matching didisuhardi.com Hero)
 const typewriterRoles = [
   "Digital Creator & Operations Lead",
@@ -400,21 +418,31 @@ function renderPolaroidGallery() {
     const tiltClass = tilts[index % tilts.length];
     return `
       <div class="polaroid-card ${tiltClass}" onclick="openDetailModal('${item.id}')">
-        <div class="polaroid-metric-badge">${item.metric}</div>
+        <button class="polaroid-edit-badge" onclick="event.stopPropagation(); openStudioModal('${item.id}');" title="Edit this card in Studio">
+          <i data-lucide="edit-3" style="width: 0.85rem; height: 0.85rem;"></i>
+        </button>
+        <div class="polaroid-metric-badge">${escapeHtml(item.metric)}</div>
         <div class="polaroid-img-wrapper">
           <img src="${item.image}" alt="${escapeHtml(item.title)}" loading="lazy" />
         </div>
-        <div class="polaroid-title">${item.title}</div>
+        <div class="polaroid-title">${escapeHtml(item.title)}</div>
       </div>
     `;
   }).join("");
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
 
 // 6. DETAIL MODAL CONTROLLER (Two-Column Layout)
+let currentDetailModalProjectId = null;
+
 function openDetailModal(caseId) {
   const item = projectsData.find(p => p.id === caseId);
   if (!item) return;
 
+  currentDetailModalProjectId = caseId;
   const modal = document.getElementById("case-modal");
   if (!modal) return;
 
@@ -456,6 +484,7 @@ function openDetailModal(caseId) {
 
   modal.classList.add("open");
   document.body.style.overflow = "hidden";
+  if (window.lucide) window.lucide.createIcons();
 }
 
 function closeDetailModal() {
@@ -513,12 +542,327 @@ function setupThemeToggle() {
   });
 }
 
-// 9. ESCAPE KEY & GLOBAL KEYBOARD SHORTCUTS
+// ============================================================
+// 9. VISUAL CONTENT & IMAGE STUDIO CONTROLLER (Canva-like Editor)
+// ============================================================
+const availableAssets = [
+  { name: "image1.png", path: "assets/images/ppt/image1.png", label: "Media Intro Deck" },
+  { name: "image2.png", path: "assets/images/ppt/image2.png", label: "Teman Crypto Intro" },
+  { name: "image3.png", path: "assets/images/ppt/image3.png", label: "Web3 Ecosystem" },
+  { name: "image4.png", path: "assets/images/ppt/image4.png", label: "Bitget AMA Session" },
+  { name: "image5.png", path: "assets/images/ppt/image5.png", label: "Crypto Social Hub" },
+  { name: "image6.png", path: "assets/images/ppt/image6.png", label: "Bybit AMA Session" },
+  { name: "image7.png", path: "assets/images/ppt/image7.png", label: "Community Brief" },
+  { name: "image8.png", path: "assets/images/ppt/image8.png", label: "Operations Slide" },
+  { name: "image9.jpg", path: "assets/images/ppt/image9.jpg", label: "PMM Jambi Classroom" },
+  { name: "image10.jpg", path: "assets/images/ppt/image10.jpg", label: "Suku Anak Dalam Field" },
+  { name: "image11.png", path: "assets/images/ppt/image11.png", label: "Kemendikbud Certificate" },
+  { name: "image12.png", path: "assets/images/ppt/image12.png", label: "Frost.One Banner" },
+  { name: "image13.png", path: "assets/images/ppt/image13.png", label: "Frost Analytics 26.4M" },
+  { name: "image14.png", path: "assets/images/ppt/image14.png", label: "YouTube Studio Stats" },
+  { name: "image15.png", path: "assets/images/ppt/image15.png", label: "Shorts Retention" },
+  { name: "image16.png", path: "assets/images/ppt/image16.png", label: "Audience Pacing" },
+  { name: "image17.png", path: "assets/images/ppt/image17.png", label: "IPB Finance Certificate" },
+  { name: "image18.jpg", path: "assets/images/ppt/image18.jpg", label: "UGM Winner Poster" },
+  { name: "image19.png", path: "assets/images/ppt/image19.png", label: "Duolingo English B2" },
+  { name: "image20.png", path: "assets/images/ppt/image20.png", label: "Landscape Vector Art" },
+  { name: "image21.png", path: "assets/images/ppt/image21.png", label: "Kintakun x Lazada" },
+  { name: "image22.png", path: "assets/images/ppt/image22.png", label: "LIPI Mascot Illustration" },
+  { name: "image23.png", path: "assets/images/ppt/image23.png", label: "Editorial Typography" },
+  { name: "image24.png", path: "assets/images/ppt/image24.png", label: "Brand Showcase" },
+  { name: "image25.png", path: "assets/images/ppt/image25.png", label: "Closing / Profile Slide" },
+  { name: "profile.jpg", path: "assets/images/profile.jpg", label: "Alfan Formal Photo" }
+];
+
+let currentStudioProjectId = null;
+
+function openStudioModal(projectId) {
+  const modal = document.getElementById("studio-modal");
+  if (!modal) return;
+
+  // Cleanly close detail modal if open
+  closeDetailModal();
+
+  if (!projectId || !projectsData.some(p => p.id === projectId)) {
+    projectId = currentDetailModalProjectId || projectsData[0].id;
+  }
+  currentStudioProjectId = projectId;
+
+  // Populate Select dropdown
+  const select = document.getElementById("studio-project-select");
+  if (select) {
+    select.innerHTML = projectsData.map(p => `
+      <option value="${p.id}" ${p.id === currentStudioProjectId ? 'selected' : ''}>
+        ${escapeHtml(p.title)}
+      </option>
+    `).join("");
+  }
+
+  loadProjectIntoStudio(currentStudioProjectId);
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function closeStudioModal() {
+  const modal = document.getElementById("studio-modal");
+  if (modal) {
+    modal.classList.remove("open");
+    document.body.style.overflow = "auto";
+  }
+}
+
+function loadProjectIntoStudio(projectId) {
+  const project = projectsData.find(p => p.id === projectId);
+  if (!project) return;
+  currentStudioProjectId = projectId;
+
+  // Form Fields
+  document.getElementById("studio-title").value = project.title || "";
+  document.getElementById("studio-category").value = project.category || "";
+  document.getElementById("studio-metric").value = project.metric || "";
+  document.getElementById("studio-submetric").value = project.subMetric || "";
+  document.getElementById("studio-narrative").value = (project.narrative || []).join("\n\n");
+  document.getElementById("studio-highlights").value = (project.highlights || []).join("\n");
+  document.getElementById("studio-tags").value = (project.tags || []).join(", ");
+  document.getElementById("studio-cta-text").value = project.ctaText || "";
+  document.getElementById("studio-cta-link").value = project.ctaLink || "";
+
+  // Preview Cover & Filename
+  const coverImg = document.getElementById("studio-cover-preview-img");
+  const coverFilename = document.getElementById("studio-cover-filename");
+  if (coverImg) coverImg.src = project.image;
+  if (coverFilename) coverFilename.textContent = project.image.split("/").pop();
+
+  // Render Current Gallery Thumbs
+  renderStudioGalleryThumbs(project);
+
+  // Render Asset Library Grid
+  renderStudioAssetGrid(project);
+
+  setStudioSaveStatus("Ready");
+}
+
+function renderStudioGalleryThumbs(project) {
+  const container = document.getElementById("studio-gallery-thumbs");
+  if (!container) return;
+
+  if (!project.gallery || project.gallery.length === 0) {
+    container.innerHTML = `<span style="font-size: 0.7rem; color: var(--text-subtle);">No gallery photos added</span>`;
+    return;
+  }
+
+  container.innerHTML = project.gallery.map((imgSrc, idx) => `
+    <div class="gallery-thumb-chip">
+      <img src="${imgSrc}" alt="Gallery item" />
+      <button type="button" class="remove-gallery-btn" onclick="removeGalleryImageFromStudio(${idx})" title="Remove from stack">×</button>
+    </div>
+  `).join("");
+}
+
+function removeGalleryImageFromStudio(index) {
+  const project = projectsData.find(p => p.id === currentStudioProjectId);
+  if (!project || !project.gallery) return;
+  project.gallery.splice(index, 1);
+  saveStudioData(true);
+  renderStudioGalleryThumbs(project);
+  renderStudioAssetGrid(project);
+}
+
+function renderStudioAssetGrid(project) {
+  const container = document.getElementById("studio-asset-grid");
+  if (!container) return;
+
+  container.innerHTML = availableAssets.map(asset => {
+    const isCover = project.image === asset.path;
+    const isGallery = (project.gallery || []).includes(asset.path);
+
+    let badgeHtml = "";
+    if (isCover) {
+      badgeHtml = `<span class="asset-badge-tag badge-cover">★ Cover</span>`;
+    } else if (isGallery) {
+      badgeHtml = `<span class="asset-badge-tag badge-gallery">✓ Gallery</span>`;
+    }
+
+    return `
+      <div class="asset-thumb-choice ${isCover ? 'is-cover' : ''} ${isGallery ? 'is-gallery' : ''}" title="${asset.label} (${asset.name})">
+        ${badgeHtml}
+        <img src="${asset.path}" alt="${asset.label}" loading="lazy" />
+        <span class="asset-name-tag">${asset.label}</span>
+        
+        <div class="asset-hover-overlay">
+          <button type="button" class="asset-btn-action btn-set-cover" onclick="setStudioCoverImage('${asset.path}')">
+            ★ Set Cover
+          </button>
+          <button type="button" class="asset-btn-action btn-toggle-gallery" onclick="toggleStudioGalleryImage('${asset.path}')">
+            ${isGallery ? '− Remove Gal' : '＋ Add Gal'}
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function setStudioCoverImage(imgPath) {
+  const project = projectsData.find(p => p.id === currentStudioProjectId);
+  if (!project) return;
+
+  project.image = imgPath;
+  const coverImg = document.getElementById("studio-cover-preview-img");
+  const coverFilename = document.getElementById("studio-cover-filename");
+  if (coverImg) coverImg.src = imgPath;
+  if (coverFilename) coverFilename.textContent = imgPath.split("/").pop();
+
+  saveStudioData(true);
+  renderStudioAssetGrid(project);
+  showToast("Cover set to " + imgPath.split("/").pop());
+}
+
+function toggleStudioGalleryImage(imgPath) {
+  const project = projectsData.find(p => p.id === currentStudioProjectId);
+  if (!project) return;
+  if (!project.gallery) project.gallery = [];
+
+  const idx = project.gallery.indexOf(imgPath);
+  if (idx > -1) {
+    project.gallery.splice(idx, 1);
+    showToast("Removed from gallery stack");
+  } else {
+    project.gallery.push(imgPath);
+    showToast("Added to gallery stack");
+  }
+
+  saveStudioData(true);
+  renderStudioGalleryThumbs(project);
+  renderStudioAssetGrid(project);
+}
+
+function applyCustomCoverImage() {
+  const input = document.getElementById("studio-custom-img");
+  if (!input || !input.value.trim()) return;
+  const customPath = input.value.trim();
+  setStudioCoverImage(customPath);
+  input.value = "";
+}
+
+function saveStudioData(silent = false) {
+  const project = projectsData.find(p => p.id === currentStudioProjectId);
+  if (project) {
+    // Read from inputs
+    project.title = document.getElementById("studio-title").value.trim();
+    project.category = document.getElementById("studio-category").value.trim();
+    project.metric = document.getElementById("studio-metric").value.trim();
+    project.subMetric = document.getElementById("studio-submetric").value.trim();
+    
+    // Narrative
+    const rawNarrative = document.getElementById("studio-narrative").value.trim();
+    project.narrative = rawNarrative ? rawNarrative.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean) : [];
+
+    // Highlights
+    const rawHighlights = document.getElementById("studio-highlights").value.trim();
+    project.highlights = rawHighlights ? rawHighlights.split("\n").map(s => s.trim().replace(/^[•\-\*✓]\s*/, '')).filter(Boolean) : [];
+
+    // Tags
+    const rawTags = document.getElementById("studio-tags").value.trim();
+    project.tags = rawTags ? rawTags.split(",").map(s => s.trim().replace(/^#/, '')).filter(Boolean) : [];
+
+    // CTA
+    project.ctaText = document.getElementById("studio-cta-text").value.trim();
+    project.ctaLink = document.getElementById("studio-cta-link").value.trim();
+  }
+
+  // Persist to localStorage
+  try {
+    localStorage.setItem("alfan_portfolio_projects", JSON.stringify(projectsData));
+    setStudioSaveStatus("Saved ✓");
+  } catch (e) {
+    console.error("Storage error:", e);
+  }
+
+  // Re-render gallery cards
+  renderPolaroidGallery();
+
+  // If case study modal is open, re-render it
+  const caseModal = document.getElementById("case-modal");
+  if (caseModal && caseModal.classList.contains("open") && currentDetailModalProjectId === currentStudioProjectId) {
+    openDetailModal(currentStudioProjectId);
+  }
+
+  if (!silent) {
+    showToast("✨ Card changes saved & applied live!");
+  }
+}
+
+function resetStudioDefaults() {
+  if (confirm("Reset all customized portfolio cards back to original defaults?")) {
+    localStorage.removeItem("alfan_portfolio_projects");
+    projectsData = JSON.parse(JSON.stringify(defaultProjectsData));
+    loadProjectIntoStudio(currentStudioProjectId);
+    renderPolaroidGallery();
+    showToast("Portfolio data reset to defaults");
+  }
+}
+
+function openExportModal() {
+  const modal = document.getElementById("export-modal");
+  const textarea = document.getElementById("export-code-textarea");
+  if (!modal || !textarea) return;
+
+  const exportCode = `// Exported Projects Data for Imam Alfan Rahadyan\nconst defaultProjectsData = ${JSON.stringify(projectsData, null, 2)};`;
+  textarea.value = exportCode;
+  modal.classList.add("open");
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function closeExportModal() {
+  const modal = document.getElementById("export-modal");
+  if (modal) modal.classList.remove("open");
+}
+
+function copyExportCode() {
+  const textarea = document.getElementById("export-code-textarea");
+  if (!textarea) return;
+  textarea.select();
+  navigator.clipboard.writeText(textarea.value).then(() => {
+    showToast("📋 Code copied to clipboard!");
+  }).catch(() => {
+    document.execCommand("copy");
+    showToast("📋 Code copied!");
+  });
+}
+
+function setStudioSaveStatus(text) {
+  const badge = document.getElementById("studio-save-status");
+  if (badge) badge.textContent = text;
+}
+
+let toastTimer = null;
+function showToast(message) {
+  const toast = document.getElementById("studio-toast");
+  const msgEl = document.getElementById("studio-toast-msg");
+  if (!toast || !msgEl) return;
+
+  msgEl.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+// 10. ESCAPE KEY & GLOBAL KEYBOARD SHORTCUTS
 function setupKeyboardNavigation() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      const modal = document.getElementById("case-modal");
-      if (modal && modal.classList.contains("open")) {
+      const studioModal = document.getElementById("studio-modal");
+      const exportModal = document.getElementById("export-modal");
+      const caseModal = document.getElementById("case-modal");
+
+      if (exportModal && exportModal.classList.contains("open")) {
+        closeExportModal();
+      } else if (studioModal && studioModal.classList.contains("open")) {
+        closeStudioModal();
+      } else if (caseModal && caseModal.classList.contains("open")) {
         closeDetailModal();
       } else if (currentPanel !== "home") {
         showPanel("home");
@@ -527,7 +871,7 @@ function setupKeyboardNavigation() {
   });
 }
 
-// 10. INITIALIZATION
+// 11. INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
   initParticleCanvas();
   updateTypewriter();
@@ -552,6 +896,7 @@ document.addEventListener("DOMContentLoaded", () => {
     backBtn.addEventListener("click", () => showPanel("home"));
   }
 
+  // Case Modal Listeners
   const modalCloseBtn = document.getElementById("modal-close-x");
   if (modalCloseBtn) {
     modalCloseBtn.addEventListener("click", closeDetailModal);
@@ -560,6 +905,87 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBackdrop = document.getElementById("modal-backdrop-el");
   if (modalBackdrop) {
     modalBackdrop.addEventListener("click", closeDetailModal);
+  }
+
+  const modalEditThisBtn = document.getElementById("modal-edit-this-btn");
+  if (modalEditThisBtn) {
+    modalEditThisBtn.addEventListener("click", () => {
+      openStudioModal(currentDetailModalProjectId);
+    });
+  }
+
+  // Studio Modal Listeners
+  const openStudioBtn = document.getElementById("open-studio-btn");
+  if (openStudioBtn) {
+    openStudioBtn.addEventListener("click", () => openStudioModal());
+  }
+
+  const studioCloseBtn = document.getElementById("studio-close-x");
+  if (studioCloseBtn) {
+    studioCloseBtn.addEventListener("click", closeStudioModal);
+  }
+
+  const studioBackdrop = document.getElementById("studio-backdrop-el");
+  if (studioBackdrop) {
+    studioBackdrop.addEventListener("click", closeStudioModal);
+  }
+
+  const studioSelect = document.getElementById("studio-project-select");
+  if (studioSelect) {
+    studioSelect.addEventListener("change", (e) => {
+      loadProjectIntoStudio(e.target.value);
+    });
+  }
+
+  // Live Sync on Form Input
+  const formInputIds = [
+    "studio-title", "studio-category", "studio-metric", "studio-submetric",
+    "studio-narrative", "studio-highlights", "studio-tags", "studio-cta-text", "studio-cta-link"
+  ];
+  formInputIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("input", () => saveStudioData(true));
+      el.addEventListener("change", () => saveStudioData(true));
+    }
+  });
+
+  const studioDoneBtn = document.getElementById("studio-done-btn");
+  if (studioDoneBtn) {
+    studioDoneBtn.addEventListener("click", () => {
+      saveStudioData(false);
+      closeStudioModal();
+    });
+  }
+
+  const studioResetBtn = document.getElementById("studio-reset-btn");
+  if (studioResetBtn) {
+    studioResetBtn.addEventListener("click", resetStudioDefaults);
+  }
+
+  const studioExportBtn = document.getElementById("studio-export-btn");
+  if (studioExportBtn) {
+    studioExportBtn.addEventListener("click", openExportModal);
+  }
+
+  const exportCloseBtn = document.getElementById("export-close-x");
+  if (exportCloseBtn) {
+    exportCloseBtn.addEventListener("click", closeExportModal);
+  }
+
+  const exportBackdrop = document.getElementById("export-backdrop-el");
+  if (exportBackdrop) {
+    exportBackdrop.addEventListener("click", closeExportModal);
+  }
+
+  const exportCopyBtn = document.getElementById("export-copy-btn");
+  if (exportCopyBtn) {
+    exportCopyBtn.addEventListener("click", copyExportCode);
+  }
+
+  const applyCustomImgBtn = document.getElementById("studio-apply-custom-img-btn");
+  if (applyCustomImgBtn) {
+    applyCustomImgBtn.addEventListener("click", applyCustomCoverImage);
   }
 
   if (window.lucide) {
