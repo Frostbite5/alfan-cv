@@ -6,7 +6,7 @@ const defaultProjectsData = [
     id: "frost-one",
     title: "Frost.One: Scaling Faceless Media",
     category: "Digital Media Growth",
-    metric: "26.4M+ Views / Month",
+    metric: "26.4M+ Total Views",
     subMetric: "68K+ Subs • 95%+ Retention",
     image: "assets/images/frost-analytics.png",
     gallery: [
@@ -20,7 +20,7 @@ const defaultProjectsData = [
       "The content pipeline integrates data-driven keyword research, custom narrative scriptwriting, fast-paced kinetic typography, and multi-track audio leveling ensuring an average watch retention rate of 95%+ on videos surpassing 1,000,000+ views."
     ],
     highlights: [
-      "Scaled to 68,842+ subscribers and 26.4M+ monthly views organically",
+      "Scaled to 68,842+ subscribers and 26.4M+ total views organically",
       "Multiple short-form videos surpassing 1,000,000+ views each",
       "Consistent 95%+ average retention rate through hook-driven pacing",
       "Full production ownership: scripting, voiceover sync, editing, and thumbnail design"
@@ -93,11 +93,11 @@ const defaultProjectsData = [
     ],
     narrative: [
       "The Panateen Competition organized by Tim Bantuan Medis Mahasiswa Panacea FK-KMK Universitas Gadjah Mada is a prestigious national contest evaluating public health communication, visual hierarchy, and persuasive design.",
-      "Alfan was awarded 1st Place (Juara 1 Lomba Poster) for an original poster layout effectively communicating complex health messages with compelling illustration and clear typography.",
+      "Alfan was awarded 1st Place Winner (National Poster Competition) for an original poster layout effectively communicating complex health messages with compelling illustration and clear typography.",
       "This foundational victory established his passion for combining visual aesthetic excellence with high-retention audience communication."
     ],
     highlights: [
-      "1st Place Winner (Juara 1) nationwide among hundreds of student submissions",
+      "1st Place Winner nationwide among hundreds of student submissions",
       "Certified by Dean of Faculty of Medicine, Public Health, and Nursing UGM",
       "Demonstrated mastery of visual hierarchy, vector graphics, and color theory"
     ],
