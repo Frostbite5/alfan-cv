@@ -428,7 +428,7 @@ function showPanel(panelName) {
   } else if (panelName === "about") {
     document.body.classList.remove("on-home");
     if (backBtn) backBtn.classList.add("visible");
-    if (sectionTitle) sectionTitle.textContent = "INTERACTIVE CV & RESUME";
+    if (sectionTitle) sectionTitle.textContent = "ABOUT ME";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
@@ -584,7 +584,24 @@ function openDetailModal(caseId) {
       </div>
     `;
   }
+
+  if (item.videoEmbed) {
+    const jumpText = item.videoBadge || "Featured Video";
+    galleryHtml = `
+      <div class="modal-video-jump-bar">
+        <button type="button" class="modal-video-jump-pill" onclick="document.querySelector('.modal-video-item')?.scrollIntoView({behavior:'smooth'});" title="Scroll directly down to video showcase">
+          <span class="video-pulse-dot"></span>
+          <span>Watch ${escapeHtml(jumpText)} ↓</span>
+        </button>
+      </div>
+    ` + galleryHtml;
+  }
+
   galleryContainer.innerHTML = galleryHtml;
+
+  const leftCol = document.querySelector(".modal-col-left");
+  if (leftCol) leftCol.scrollTop = 0;
+  galleryContainer.scrollTop = 0;
 
   modal.classList.add("open");
   document.body.style.overflow = "hidden";
