@@ -11,9 +11,10 @@ const defaultProjectsData = [
     image: "assets/images/frost-analytics.png",
     gallery: [
       "assets/images/frost-analytics.png",
-      "assets/images/frost-banner.png",
       "assets/images/frost-channel.png"
     ],
+    videoEmbed: "https://www.youtube-nocookie.com/embed/9h4s7HUuSck",
+    videoUrl: "https://www.youtube.com/shorts/9h4s7HUuSck",
     narrative: [
       "Frost One (@FrostOne01) is a digital storytelling media channel focused on technology, military history, and captivating curiosities ('Bikin Kalian Ga Nyangka!'). The channel was built and scaled organically from 0 to over 94,100+ active subscribers across 336 published video releases.",
       "The channel has achieved landmark lifetime engagement with 123,163,133+ (123.2M+) total views, 1,100,000+ (1.1M) watch hours, and an active community maintaining over 127,000+ views every 48 hours.",
@@ -23,6 +24,7 @@ const defaultProjectsData = [
       "Scaled to 94,189+ subscribers and 123,163,133+ (123.2M+) total views organically",
       "Over 1,100,000+ (1.1M) watch hours across 336 published video releases",
       "Top viral short narratives reaching 3.9M, 1.6M, and 1.2M views",
+      "Featured Showcase: Master-level pacing & kinetic typography in short-form storytelling",
       "Active 48-hour velocity exceeding 127,000+ real-time views",
       "Full production ownership: scripting, voiceover sync, editing, and packaging"
     ],
@@ -210,7 +212,7 @@ const defaultProjectsData = [
 
 // Load persisted user-customized projects or fallback to defaults
 function loadProjectsData() {
-  const DATA_VERSION = "3.0"; // Bump version when default projects data is updated
+  const DATA_VERSION = "4.0"; // Bump version when default projects data is updated
   if (localStorage.getItem("alfan_projects_version") !== DATA_VERSION) {
     localStorage.removeItem("alfan_portfolio_projects");
     localStorage.setItem("alfan_projects_version", DATA_VERSION);
@@ -534,11 +536,41 @@ function openDetailModal(caseId) {
 
   // Populate right column (Polaroid stack)
   const galleryContainer = document.getElementById("modal-polaroid-stack");
-  galleryContainer.innerHTML = item.gallery.map(imgSrc => `
+  let galleryHtml = item.gallery.map(imgSrc => `
     <div class="modal-polaroid-item">
       <img src="${imgSrc}" alt="${escapeHtml(item.title)}" />
     </div>
   `).join("");
+
+  if (item.videoEmbed) {
+    galleryHtml += `
+      <div class="modal-polaroid-item modal-video-item">
+        <div class="modal-video-header">
+          <div class="modal-video-badge">
+            <span class="video-pulse-dot"></span>
+            <span>Best Edited Short</span>
+          </div>
+          <a href="${item.videoUrl || item.videoEmbed}" target="_blank" rel="noopener noreferrer" class="modal-video-ext-btn" title="Open on YouTube Shorts">
+            Watch on YouTube ↗
+          </a>
+        </div>
+        <div class="modal-video-wrapper">
+          <iframe 
+            src="${item.videoEmbed}" 
+            title="${escapeHtml(item.title)} - Best Edited Short"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="modal-video-caption">
+          <span class="video-caption-title">🔥 Best Edited Narrative Showcase</span>
+          <span class="video-caption-sub">Pacing, kinetic typography & sound design by Alfan</span>
+        </div>
+      </div>
+    `;
+  }
+  galleryContainer.innerHTML = galleryHtml;
 
   modal.classList.add("open");
   document.body.style.overflow = "hidden";
@@ -550,6 +582,11 @@ function closeDetailModal() {
   if (modal) {
     modal.classList.remove("open");
     document.body.style.overflow = "auto";
+  }
+  const galleryContainer = document.getElementById("modal-polaroid-stack");
+  if (galleryContainer) {
+    // Reset iframe to stop audio/video playing in background
+    galleryContainer.innerHTML = "";
   }
 }
 
