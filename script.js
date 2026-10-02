@@ -92,7 +92,7 @@ const defaultProjectsData = [
     image: "assets/images/ugm-poster.jpg",
     gallery: [
       "assets/images/ugm-poster.jpg",
-      "assets/images/art-landscape.png"
+      "assets/images/ugm-panateen-poster.jpg"
     ],
     narrative: [
       "The Panateen Competition organized by Tim Bantuan Medis Mahasiswa Panacea FK-KMK Universitas Gadjah Mada is a prestigious national contest evaluating public health communication, visual hierarchy, and persuasive design.",
@@ -219,7 +219,7 @@ const defaultProjectsData = [
 
 // Load persisted user-customized projects or fallback to defaults
 function loadProjectsData() {
-  const DATA_VERSION = "5.0"; // Bump version when default projects data is updated
+  const DATA_VERSION = "6.0"; // Bump version when default projects data is updated
   if (localStorage.getItem("alfan_projects_version") !== DATA_VERSION) {
     localStorage.removeItem("alfan_portfolio_projects");
     localStorage.setItem("alfan_projects_version", DATA_VERSION);
@@ -723,7 +723,9 @@ const availableAssets = [
   { name: "image23.png", path: "assets/images/ppt/image23.png", label: "Editorial Typography" },
   { name: "image24.png", path: "assets/images/ppt/image24.png", label: "Brand Showcase" },
   { name: "image25.png", path: "assets/images/ppt/image25.png", label: "Closing / Profile Slide" },
-  { name: "profile.jpg", path: "assets/images/profile.jpg", label: "Alfan Formal Photo" }
+  { name: "profile.jpg", path: "assets/images/profile.jpg", label: "Alfan Formal Photo" },
+  { name: "ugm-panateen-poster.jpg", path: "assets/images/ugm-panateen-poster.jpg", label: "Panateen 1st Winner Poster" },
+  { name: "unej-ept-cert.png", path: "assets/images/unej-ept-cert.png", label: "UNEJ English Proficiency 490" }
 ];
 
 // ============================================================

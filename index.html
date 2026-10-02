@@ -16,7 +16,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet (Reverse-Engineered didisuhardi.com) -->
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body class="on-home">
 
@@ -336,7 +336,7 @@
             <div class="cv-metric-val">GPA 3.82</div>
             <div class="cv-metric-lbl">Cum Laude • Hubungan Internasional</div>
           </div>
-          <div class="cv-metric-box cv-metric-clickable" onclick="scrollToAwardsSection()" title="Click to view Honors & Awards achievements" role="button" tabindex="0">
+          <div class="cv-metric-box cv-metric-clickable" onclick="scrollToAwardsSection()" title="Click to view Certificates & Achievements" role="button" tabindex="0">
             <div class="cv-metric-val">Winner & Top 10</div>
             <div class="cv-metric-lbl">FK-KMK UGM & IPB Finance <span class="metric-arrow-down">↓</span></div>
           </div>
@@ -392,7 +392,6 @@
                 <span class="cv-skill-chip">Exchange Partnerships</span>
                 <span class="cv-skill-chip">Vector Illustration</span>
                 <span class="cv-skill-chip">Editorial Layout</span>
-                <span class="cv-skill-chip">Stock & Market Analysis</span>
                 <span class="cv-skill-chip">Bilingual Host (EN/ID)</span>
               </div>
             </div>
@@ -400,21 +399,21 @@
             <!-- Software & Tools -->
             <div class="cv-sidebar-card">
               <h4 class="cv-sidebar-heading">
-                <i data-lucide="tool" style="width: 1rem; height: 1rem; color: var(--accent-purple);"></i>
+                <i data-lucide="wrench" style="width: 1rem; height: 1rem; color: var(--accent-purple);"></i>
                 <span>Tools & Software</span>
               </h4>
               <div class="cv-tools-list">
                 <div class="cv-tool-row">
                   <span class="cv-tool-cat">Video:</span>
-                  <span class="cv-tool-names">Premiere Pro, After Effects, CapCut</span>
+                  <span class="cv-tool-names">Premiere Pro, DaVinci Resolve, CapCut</span>
                 </div>
                 <div class="cv-tool-row">
                   <span class="cv-tool-cat">Design:</span>
-                  <span class="cv-tool-names">Photoshop, Illustrator, Figma</span>
+                  <span class="cv-tool-names">Photoshop, Illustrator, Canva</span>
                 </div>
                 <div class="cv-tool-row">
                   <span class="cv-tool-cat">Ops & Data:</span>
-                  <span class="cv-tool-names">YouTube Studio, Notion, Excel</span>
+                  <span class="cv-tool-names">MS Word, Notion</span>
                 </div>
               </div>
             </div>
@@ -553,12 +552,22 @@
               </div>
             </div>
 
-            <!-- Awards & Honors -->
+            <!-- Certificates & Honors -->
             <div class="cv-main-section" id="cv-section-awards">
               <h3 class="cv-section-title">
-                <i data-lucide="trophy" style="width: 1.15rem; height: 1.15rem; color: var(--accent-orange);"></i>
-                <span>Honors, Competitions & Certifications</span>
+                <i data-lucide="award" style="width: 1.15rem; height: 1.15rem; color: var(--accent-orange);"></i>
+                <span>Certificates</span>
               </h3>
+
+              <div class="cv-doc-item">
+                <div class="cv-item-header">
+                  <div>
+                    <h4 class="cv-item-role">Standardized English Proficiency Test (EPT) • Overall Score 490</h4>
+                    <div class="cv-item-company">Jember University Language Center • Listening: 500, Grammar: 490, Reading: 480</div>
+                  </div>
+                  <div class="cv-item-date">Sep 2024 — Sep 2025</div>
+                </div>
+              </div>
 
               <div class="cv-doc-item">
                 <div class="cv-item-header">
@@ -618,8 +627,8 @@
             </button>
 
             <button class="journey-tab-btn" data-tab="achievement">
-              <span>🏆</span>
-              <span>Honors & Awards</span>
+              <span>📜</span>
+              <span>Certificates</span>
             </button>
           </div>
 
@@ -665,8 +674,8 @@
               </div>
 
               <div class="timeline-item">
-                <div class="timeline-logo-box">
-                  <img src="assets/images/art-landscape.png" alt="Sneztaz Magazine" />
+                <div class="timeline-logo-box" style="background: var(--bg-surface); font-weight: 800; font-size: 1.15rem; color: var(--accent-orange); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif;">
+                  SZ
                 </div>
                 <div class="timeline-details">
                   <div class="timeline-header-row">
@@ -758,8 +767,25 @@
               </div>
             </div>
 
-            <!-- TAB 4: HONORS & AWARDS -->
+            <!-- TAB 4: CERTIFICATES & AWARDS -->
             <div class="journey-tab-panel" data-panel="achievement">
+              <div class="timeline-item">
+                <div class="timeline-logo-box">
+                  <img src="assets/images/unej-ept-cert.png" alt="UNEJ Language Center" />
+                </div>
+                <div class="timeline-details">
+                  <div class="timeline-header-row">
+                    <div class="timeline-role">Standardized English Proficiency Test (EPT)</div>
+                    <div class="timeline-date">Sep 2024 — Sep 2025</div>
+                  </div>
+                  <div class="timeline-org">Jember University Language Center • Overall Score 490</div>
+                  <ul class="timeline-desc-list">
+                    <li>Listening: 500 | Grammar & Structure: 490 | Reading Comprehension: 480.</li>
+                    <li>Official certification (EPTLC.2024092630092024.1740) issued by UPT Bahasa Universitas Jember.</li>
+                  </ul>
+                </div>
+              </div>
+
               <div class="timeline-item">
                 <div class="timeline-logo-box">
                   <img src="assets/images/ugm-poster.jpg" alt="UGM Winner" />
@@ -1072,6 +1098,6 @@
     <span id="studio-toast-msg">Changes saved successfully!</span>
   </div>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>
