@@ -166,24 +166,31 @@ const defaultProjectsData = [
     category: "Videography & Team Leadership",
     metric: "5-Member Team Led",
     subMetric: "Advocacy Media Internship",
-    image: "assets/images/frost-short.png",
+    image: "assets/images/gpp-thumbnail.jpg",
     gallery: [
-      "assets/images/frost-short.png",
-      "assets/images/pmm-jambi.jpg"
+      "assets/images/gpp-thumbnail.jpg",
+      "assets/images/gpp-thumbnail2.jpg"
     ],
+    videoEmbed: "https://www.youtube-nocookie.com/embed/NLUFax_CqGk",
+    videoUrl: "https://www.youtube.com/@IR20withGPP/videos",
+    videoAspect: "16/9",
+    videoBadge: "🎬 Community Documentary Video",
+    videoTitle: "IR20 with GPP Jember Documentary",
+    videoSubtitle: "Official documentary of IR20 UNEJ internship with GPP Jember",
     narrative: [
       "Serving as Videographer, Editor, and Regional Team Leader for Gerakan Peduli Perempuan Jember, Alfan directed multimedia advocacy campaigns centered on women's rights and maternal health.",
       "He managed a 5-member regional team to execute community educational programs in Tegalgede, Jember, translating complex health and legal concepts into empathetic, engaging video formats.",
-      "The resulting video content was distributed across grassroots social channels to raise local awareness and drive community participation."
+      "The resulting video documentation was produced, edited, and published to showcase grassroots initiatives and community engagement across Jember."
     ],
     highlights: [
       "Led regional 5-member cross-functional team across program planning and field execution",
       "Produced and edited compelling advocacy video modules for maternal-infant health",
-      "Direct engagement with community leaders and local families in Tegalgede, Jember"
+      "Direct engagement with community leaders and local families in Tegalgede, Jember",
+      "Official video repository published on YouTube: @IR20withGPP"
     ],
-    tags: ["Team Leadership", "Videography", "Advocacy Media", "Community Health"],
-    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20let's%20talk%20about%20video%20production!",
-    ctaText: "Discuss Media Production"
+    tags: ["Team Leadership", "Videography", "Advocacy Media", "Community Health", "@IR20withGPP"],
+    ctaLink: "https://www.youtube.com/@IR20withGPP/videos",
+    ctaText: "Watch GPP YouTube Videos"
   },
   {
     id: "duolingo-b2",
@@ -212,7 +219,7 @@ const defaultProjectsData = [
 
 // Load persisted user-customized projects or fallback to defaults
 function loadProjectsData() {
-  const DATA_VERSION = "4.0"; // Bump version when default projects data is updated
+  const DATA_VERSION = "5.0"; // Bump version when default projects data is updated
   if (localStorage.getItem("alfan_projects_version") !== DATA_VERSION) {
     localStorage.removeItem("alfan_portfolio_projects");
     localStorage.setItem("alfan_projects_version", DATA_VERSION);
@@ -404,6 +411,7 @@ function showPanel(panelName) {
   });
 
   if (panelName === "home") {
+    document.body.classList.add("on-home");
     if (backBtn) backBtn.classList.remove("visible");
     if (sectionTitle) sectionTitle.textContent = "";
     // Cleanly reset surprise gift box animation
@@ -413,10 +421,12 @@ function showPanel(panelName) {
     }
     isBoxOpening = false;
   } else if (panelName === "steps") {
+    document.body.classList.remove("on-home");
     if (backBtn) backBtn.classList.add("visible");
-    if (sectionTitle) sectionTitle.textContent = "PORTFOLIO & SELECTED WORKS";
+    if (sectionTitle) sectionTitle.textContent = "PORTFOLIO & ACHIEVEMENT";
     window.scrollTo({ top: 0, behavior: "smooth" });
   } else if (panelName === "about") {
+    document.body.classList.remove("on-home");
     if (backBtn) backBtn.classList.add("visible");
     if (sectionTitle) sectionTitle.textContent = "INTERACTIVE CV & RESUME";
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -543,29 +553,33 @@ function openDetailModal(caseId) {
   `).join("");
 
   if (item.videoEmbed) {
+    const isLandscape = item.videoAspect === "16/9";
+    const badgeText = item.videoBadge || "Featured Video";
+    const titleText = item.videoTitle || "🔥 Best Edited Narrative Showcase";
+    const subText = item.videoSubtitle || "Pacing, kinetic typography & sound design by Alfan";
     galleryHtml += `
       <div class="modal-polaroid-item modal-video-item">
         <div class="modal-video-header">
           <div class="modal-video-badge">
             <span class="video-pulse-dot"></span>
-            <span>Best Edited Short</span>
+            <span>${escapeHtml(badgeText)}</span>
           </div>
-          <a href="${item.videoUrl || item.videoEmbed}" target="_blank" rel="noopener noreferrer" class="modal-video-ext-btn" title="Open on YouTube Shorts">
+          <a href="${item.videoUrl || item.videoEmbed}" target="_blank" rel="noopener noreferrer" class="modal-video-ext-btn" title="Open on YouTube">
             Watch on YouTube ↗
           </a>
         </div>
-        <div class="modal-video-wrapper">
+        <div class="modal-video-wrapper ${isLandscape ? 'aspect-16-9' : 'aspect-9-16'}">
           <iframe 
             src="${item.videoEmbed}" 
-            title="${escapeHtml(item.title)} - Best Edited Short"
+            title="${escapeHtml(item.title)} - Video Showcase"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowfullscreen>
           </iframe>
         </div>
         <div class="modal-video-caption">
-          <span class="video-caption-title">🔥 Best Edited Narrative Showcase</span>
-          <span class="video-caption-sub">Pacing, kinetic typography & sound design by Alfan</span>
+          <span class="video-caption-title">${escapeHtml(titleText)}</span>
+          <span class="video-caption-sub">${escapeHtml(subText)}</span>
         </div>
       </div>
     `;
@@ -589,6 +603,28 @@ function closeDetailModal() {
     galleryContainer.innerHTML = "";
   }
 }
+
+// Scroll directly to Honors & Awards / Achievements section
+function scrollToAwardsSection() {
+  if (currentPanel !== "about") {
+    showPanel("about");
+  }
+
+  // Ensure document mode is active to see full Honors & Awards details
+  switchCvMode("document");
+
+  setTimeout(() => {
+    const awardsEl = document.getElementById("cv-section-awards");
+    if (awardsEl) {
+      awardsEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      awardsEl.classList.remove("awards-highlight-pulse");
+      // Trigger reflow for animation restart
+      void awardsEl.offsetWidth;
+      awardsEl.classList.add("awards-highlight-pulse");
+    }
+  }, 120);
+}
+window.scrollToAwardsSection = scrollToAwardsSection;
 
 // 7. JOURNEY TABS CONTROLLER (Experience, Organization, Education, Achievement)
 function setupJourneyTabs() {
@@ -654,6 +690,8 @@ const availableAssets = [
   { name: "image11.png", path: "assets/images/ppt/image11.png", label: "Kemendikbud Certificate" },
   { name: "frost-analytics.png", path: "assets/images/frost-analytics.png", label: "YouTube Studio 123.2M Views" },
   { name: "frost-channel.png", path: "assets/images/frost-channel.png", label: "Frost One Channel @FrostOne01" },
+  { name: "gpp-thumbnail.jpg", path: "assets/images/gpp-thumbnail.jpg", label: "GPP Jember OMS Festival" },
+  { name: "gpp-thumbnail2.jpg", path: "assets/images/gpp-thumbnail2.jpg", label: "GPP Jember Community Event" },
   { name: "image12.png", path: "assets/images/ppt/image12.png", label: "Frost.One Banner" },
   { name: "image13.png", path: "assets/images/ppt/image13.png", label: "Frost Analytics 26.4M" },
   { name: "image14.png", path: "assets/images/ppt/image14.png", label: "YouTube Studio Stats" },
@@ -1191,6 +1229,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  showPanel("home");
 
   if (window.lucide) {
     window.lucide.createIcons();

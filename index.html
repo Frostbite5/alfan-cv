@@ -16,9 +16,9 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet (Reverse-Engineered didisuhardi.com) -->
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
-<body>
+<body class="on-home">
 
   <!-- Ambient Grid Overlay & Particle Constellation Canvas -->
   <div class="bg-grid-overlay" aria-hidden="true"></div>
@@ -140,10 +140,10 @@
                 <div class="stack-caption">123.2M+ Total Views</div>
               </div>
 
-              <!-- Card 2 (Back right) -->
-              <div class="stack-card stack-card-2">
+              <!-- Card 2 (Back right - Clicking scrolls to Achievement) -->
+              <div class="stack-card stack-card-2 cv-card-clickable" onclick="scrollToAwardsSection(); event.stopPropagation();" title="Click to view IPB & UGM achievements" role="button" tabindex="0">
                 <img src="assets/images/ipb-finalist.png" alt="IPB Finalist" />
-                <div class="stack-caption">Top 10 Finalist</div>
+                <div class="stack-caption">Top 10 Finalist 🏆</div>
               </div>
 
               <!-- Card Front (Profile Photo) -->
@@ -170,7 +170,7 @@
               <span class="easter-item easter-2" title="123.2M+ Total Views Content">🎬</span>
               <span class="easter-item easter-3" title="Web3 Community COO">💎</span>
               <span class="easter-item easter-4" title="IPB Stock Finalist">📈</span>
-              <span class="easter-item easter-5" title="UGM 1st Place Winner">🏆</span>
+              <span class="easter-item easter-5" onclick="scrollToAwardsSection(); event.stopPropagation();" title="UGM 1st Place Winner (Click to View)">🏆</span>
               <span class="easter-item easter-6" title="GPA 3.82 Cum Laude">🎓</span>
               <span class="easter-item easter-7" title="Creative Design">🎨</span>
               <span class="easter-item easter-8" title="Sparkles">✨</span>
@@ -248,10 +248,9 @@
         <div class="steps-header">
           <div class="steps-badge-pill">
             <i data-lucide="sparkles" style="width: 0.85rem; height: 0.85rem; color: var(--accent-orange);"></i>
-            <span>PORTFOLIO SHOWCASE</span>
+            <span>PORTFOLIO & ACHIEVEMENT</span>
           </div>
-          <h2 class="steps-headline">EACH OF MY STEPS</h2>
-          <p class="steps-subheadline">Curated digital media, Web3 operations, and visual design milestones bursting out from the surprise gift box.</p>
+          <h2 class="steps-headline">PORTFOLIO SHOWCASE</h2>
         </div>
 
         <!-- Dynamic Scattered Polaroid Grid -->
@@ -337,9 +336,9 @@
             <div class="cv-metric-val">GPA 3.82</div>
             <div class="cv-metric-lbl">Cum Laude • Hubungan Internasional</div>
           </div>
-          <div class="cv-metric-box">
+          <div class="cv-metric-box cv-metric-clickable" onclick="scrollToAwardsSection()" title="Click to view Honors & Awards achievements" role="button" tabindex="0">
             <div class="cv-metric-val">Winner & Top 10</div>
-            <div class="cv-metric-lbl">FK-KMK UGM & IPB Finance</div>
+            <div class="cv-metric-lbl">FK-KMK UGM & IPB Finance <span class="metric-arrow-down">↓</span></div>
           </div>
           <div class="cv-metric-box">
             <div class="cv-metric-val">CEFR B2</div>
@@ -496,7 +495,7 @@
                 </div>
                 <ul class="cv-item-bullets">
                   <li>Led a 5-member regional team executing maternal-infant health advocacy and education modules in Tegalgede, Jember.</li>
-                  <li>Produced, directed, and edited multimedia video stories translating legal and health concepts into empathetic content.</li>
+                  <li>Produced, directed, and edited multimedia video stories and field documentaries (<a href="https://www.youtube.com/@IR20withGPP/videos" target="_blank" rel="noopener noreferrer" style="color: var(--accent-orange); font-weight: 600; text-decoration: underline;">Watch on @IR20withGPP ↗</a>).</li>
                 </ul>
               </div>
 
@@ -555,7 +554,7 @@
             </div>
 
             <!-- Awards & Honors -->
-            <div class="cv-main-section">
+            <div class="cv-main-section" id="cv-section-awards">
               <h3 class="cv-section-title">
                 <i data-lucide="trophy" style="width: 1.15rem; height: 1.15rem; color: var(--accent-orange);"></i>
                 <span>Honors, Competitions & Certifications</span>
@@ -650,17 +649,17 @@
 
               <div class="timeline-item">
                 <div class="timeline-logo-box">
-                  <img src="assets/images/frost-short.png" alt="GPP Jember" />
+                  <img src="assets/images/gpp-thumbnail.jpg" alt="GPP Jember" />
                 </div>
                 <div class="timeline-details">
                   <div class="timeline-header-row">
                     <div class="timeline-role">Videographer, Editor & Regional Team Leader</div>
                     <div class="timeline-date">Jun 2023 — Aug 2023</div>
                   </div>
-                  <div class="timeline-org">Gerakan Peduli Perempuan Jember</div>
+                  <div class="timeline-org">Gerakan Peduli Perempuan Jember (@IR20withGPP)</div>
                   <ul class="timeline-desc-list">
                     <li>Led a 5-member regional team executing maternal-infant health education in Tegalgede, Jember.</li>
-                    <li>Captured and edited empathetic advocacy video stories distributed to grassroots communities.</li>
+                    <li>Produced and edited empathetic advocacy video stories and field documentaries (<a href="https://www.youtube.com/@IR20withGPP/videos" target="_blank" rel="noopener noreferrer" style="color: var(--accent-orange); font-weight: 600; text-decoration: underline;">Watch on YouTube ↗</a>).</li>
                   </ul>
                 </div>
               </div>
@@ -1073,6 +1072,6 @@
     <span id="studio-toast-msg">Changes saved successfully!</span>
   </div>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>

@@ -301,9 +301,11 @@ html.dark .site-header {
 /* Panel Switcher Architecture */
 .app-panels-container {
   position: relative;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   z-index: 10;
+  overflow-x: hidden;
 }
 
 .panel-view {
@@ -320,12 +322,37 @@ html.dark .site-header {
   flex-direction: column;
 }
 
+.panel-view:not(.active) {
+  display: none !important;
+}
+
 .panel-view.active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
   pointer-events: auto;
   position: relative;
+}
+
+/* Homepage non-scrollable desktop viewport (no blank bottom space) */
+@media (min-width: 901px) {
+  body.on-home {
+    overflow-y: hidden !important;
+    height: 100vh;
+    max-height: 100vh;
+  }
+  body.on-home #panel-home.active {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+  body.on-home .hero-layout {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    padding: 5rem 2rem 1.5rem 2rem;
+    justify-content: space-between;
+  }
 }
 
 /* ============================================================
@@ -1446,6 +1473,7 @@ html.dark .cv-lang-level {
   padding: 1.75rem;
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+  scroll-margin-top: 5.5rem;
 }
 
 .cv-section-title {
@@ -1915,6 +1943,12 @@ html.dark .cv-lang-level {
   overflow: hidden;
   background: #000;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+.modal-video-wrapper.aspect-16-9 {
+  aspect-ratio: 16 / 9;
+}
+.modal-video-wrapper.aspect-9-16 {
+  aspect-ratio: 9 / 16;
 }
 .modal-video-wrapper iframe {
   position: absolute;
@@ -2527,3 +2561,186 @@ body.admin-mode .polaroid-card:hover .polaroid-edit-badge {
     max-height: 22rem;
   }
 }
+
+/* ============================================================
+   CLICKABLE CV METRIC & AWARDS PULSE ANIMATION
+   ============================================================ */
+.cv-metric-clickable {
+  cursor: pointer;
+  position: relative;
+}
+.cv-metric-clickable:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--accent-orange);
+  box-shadow: 0 10px 24px rgba(234, 88, 12, 0.2);
+}
+.metric-arrow-down {
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-left: 0.35rem;
+  color: var(--accent-orange);
+  transition: transform 0.2s ease;
+  vertical-align: middle;
+}
+.cv-metric-clickable:hover .metric-arrow-down {
+  transform: translateY(3px);
+}
+
+.awards-highlight-pulse {
+  animation: awardsPulse 2s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 12px;
+}
+@keyframes awardsPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.7);
+    background-color: rgba(234, 88, 12, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(234, 88, 12, 0);
+    background-color: rgba(234, 88, 12, 0.14);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0);
+    background-color: transparent;
+  }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE & ANTI-OVERLAP RULES (< 768px & < 480px)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Site Header Mobile Tightening & Zero Overlap */
+  .site-header {
+    height: 4.2rem;
+    padding: 0 1rem;
+  }
+  .section-center-title {
+    display: none !important; /* Hides center badge to avoid collision with logo and controls on mobile */
+  }
+  .brand-box {
+    padding: 0.3rem 0.65rem;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+  .header-controls {
+    gap: 0.35rem;
+  }
+  .pill-group {
+    padding: 0.1rem;
+  }
+  .pill-btn {
+    padding: 0.28rem 0.55rem;
+    font-size: 0.68rem;
+  }
+  .icon-circle-btn {
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 0.85rem;
+  }
+  .edit-mode-btn {
+    padding: 0.28rem 0.6rem;
+    font-size: 0.72rem;
+  }
+  .back-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.85rem;
+  }
+
+  /* Hero Section Mobile Spacing */
+  .hero-layout {
+    padding: 4.8rem 1rem 2rem 1rem;
+    min-height: auto;
+  }
+  .hero-main-row {
+    gap: 2rem;
+    padding-bottom: 1rem;
+  }
+  .hero-name {
+    font-size: 2.5rem;
+  }
+  .hero-polaroids {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 1rem 0;
+  }
+  .polaroid-stack-btn {
+    width: 15rem;
+    height: 19rem;
+  }
+
+  /* Portfolio Showcase Mobile Spacing & Zero Side Scrolling */
+  .steps-layout {
+    padding: 5rem 1rem 3rem 1rem;
+  }
+  .polaroid-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0 2.5rem 0;
+  }
+  .tilt-1, .tilt-2, .tilt-3, .tilt-4, .tilt-5, .tilt-6, .tilt-7, .tilt-8 {
+    transform: none !important;
+  }
+
+  /* CV Mobile Layout */
+  .cv-page-layout {
+    padding: 5rem 1rem 3rem 1rem;
+  }
+  .cv-person-name {
+    font-size: 2rem;
+  }
+  .cv-metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+  .cv-metric-box {
+    padding: 0.85rem 0.5rem;
+  }
+  .cv-metric-val {
+    font-size: 1.15rem;
+  }
+  .cv-metric-lbl {
+    font-size: 0.68rem;
+  }
+
+  /* Modal Mobile Layout */
+  .modal-backdrop {
+    padding: 0.75rem;
+  }
+  .modal-dialog-2col {
+    max-height: 94vh;
+    border-radius: 1.25rem;
+  }
+  .modal-col-left {
+    padding: 1.5rem 1.25rem;
+  }
+  .modal-col-right {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 2.15rem;
+  }
+  .hero-typewriter-wrap {
+    font-size: 1.05rem;
+  }
+  .polaroid-stack-btn {
+    width: 13.5rem;
+    height: 17rem;
+  }
+  .cv-person-name {
+    font-size: 1.7rem;
+  }
+  .cv-actions-toolbar {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cv-primary-btn, .cv-secondary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
