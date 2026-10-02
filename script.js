@@ -725,7 +725,10 @@ const availableAssets = [
   { name: "image25.png", path: "assets/images/ppt/image25.png", label: "Closing / Profile Slide" },
   { name: "profile.jpg", path: "assets/images/profile.jpg", label: "Alfan Formal Photo" },
   { name: "ugm-panateen-poster.jpg", path: "assets/images/ugm-panateen-poster.jpg", label: "Panateen 1st Winner Poster" },
-  { name: "unej-ept-cert.png", path: "assets/images/unej-ept-cert.png", label: "UNEJ English Proficiency 490" }
+  { name: "unej-ept-cert.png", path: "assets/images/unej-ept-cert.png", label: "UNEJ English Proficiency 490" },
+  { name: "cover-hiking.jpg", path: "assets/images/cover-hiking.jpg", label: "Puncak Raung 3344 MDPL Hiking" },
+  { name: "cover-snorkeling.jpg", path: "assets/images/cover-snorkeling.jpg", label: "Snorkeling & Coral Reef" },
+  { name: "cover-running.jpg", path: "assets/images/cover-running.jpg", label: "Marathon 42K Finish" }
 ];
 
 // ============================================================
