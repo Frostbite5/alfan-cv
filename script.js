@@ -4,30 +4,31 @@
 const defaultProjectsData = [
   {
     id: "frost-one",
-    title: "Frost.One: Scaling Faceless Media",
+    title: "Frost One: Scaling Faceless Media",
     category: "Digital Media Growth",
-    metric: "26.4M+ Total Views",
-    subMetric: "68K+ Subs • 95%+ Retention",
+    metric: "123.2M+ Total Views",
+    subMetric: "94.1K+ Subs • 1.1M Watch Hrs",
     image: "assets/images/frost-analytics.png",
     gallery: [
       "assets/images/frost-analytics.png",
       "assets/images/frost-banner.png",
-      "assets/images/frost-short.png"
+      "assets/images/frost-channel.png"
     ],
     narrative: [
-      "Frost.One is a faceless digital media channel focused on technology, history, and narrative storytelling. The channel was built and scaled from 0 to 43,000+ subscribers within 5 months through viral, retention-engineered short-form videos.",
-      "Following a strategic hiatus, the channel surged by 58.14% to over 68,000 active subscribers, generating 26,438,606 views and 207,500 watch hours in a single 28-day window.",
-      "The content pipeline integrates data-driven keyword research, custom narrative scriptwriting, fast-paced kinetic typography, and multi-track audio leveling ensuring an average watch retention rate of 95%+ on videos surpassing 1,000,000+ views."
+      "Frost One (@FrostOne01) is a digital storytelling media channel focused on technology, military history, and captivating curiosities ('Bikin Kalian Ga Nyangka!'). The channel was built and scaled organically from 0 to over 94,100+ active subscribers across 336 published video releases.",
+      "The channel has achieved landmark lifetime engagement with 123,163,133+ (123.2M+) total views, 1,100,000+ (1.1M) watch hours, and an active community maintaining over 127,000+ views every 48 hours.",
+      "The content pipeline integrates data-driven keyword research, custom narrative scriptwriting, fast-paced kinetic typography, and multi-track audio leveling, producing top-performing viral releases reaching 3.9M views ('Saat Serbia Menjatuhkan F-117'), 1.6M views, and 1.2M views."
     ],
     highlights: [
-      "Scaled to 68,842+ subscribers and 26.4M+ total views organically",
-      "Multiple short-form videos surpassing 1,000,000+ views each",
-      "Consistent 95%+ average retention rate through hook-driven pacing",
-      "Full production ownership: scripting, voiceover sync, editing, and thumbnail design"
+      "Scaled to 94,189+ subscribers and 123,163,133+ (123.2M+) total views organically",
+      "Over 1,100,000+ (1.1M) watch hours across 336 published video releases",
+      "Top viral short narratives reaching 3.9M, 1.6M, and 1.2M views",
+      "Active 48-hour velocity exceeding 127,000+ real-time views",
+      "Full production ownership: scripting, voiceover sync, editing, and packaging"
     ],
-    tags: ["Faceless Media", "Viral Retention", "Scriptwriting", "YouTube Analytics", "Video Editing"],
-    ctaLink: "https://wa.me/6289675264517?text=Hi%20Alfan,%20I'm%20interested%20in%20your%20video%20growth%20services!",
-    ctaText: "Discuss Video Growth"
+    tags: ["Faceless Media", "Viral Retention", "Scriptwriting", "YouTube Analytics", "@FrostOne01"],
+    ctaLink: "https://www.youtube.com/@FrostOne01",
+    ctaText: "Visit YouTube Channel"
   },
   {
     id: "teman-crypto",
@@ -209,6 +210,12 @@ const defaultProjectsData = [
 
 // Load persisted user-customized projects or fallback to defaults
 function loadProjectsData() {
+  const DATA_VERSION = "3.0"; // Bump version when default projects data is updated
+  if (localStorage.getItem("alfan_projects_version") !== DATA_VERSION) {
+    localStorage.removeItem("alfan_portfolio_projects");
+    localStorage.setItem("alfan_projects_version", DATA_VERSION);
+    return JSON.parse(JSON.stringify(defaultProjectsData));
+  }
   const saved = localStorage.getItem("alfan_portfolio_projects");
   if (saved) {
     try {
@@ -228,7 +235,7 @@ let projectsData = loadProjectsData();
 // 2. TYPEWRITER EFFECT (Matching didisuhardi.com Hero)
 const typewriterRoles = [
   "Digital Creator & Operations Lead",
-  "Faceless YouTube Creator (68K+ Subs)",
+  "Faceless YouTube Creator (94K+ Subs & 123M+ Views)",
   "Web3 Community Co-Founder & COO",
   "Short-Form Retention Specialist (95%+)",
   "International Relations (GPA 3.82)"
@@ -608,6 +615,8 @@ const availableAssets = [
   { name: "image9.jpg", path: "assets/images/ppt/image9.jpg", label: "PMM Jambi Classroom" },
   { name: "image10.jpg", path: "assets/images/ppt/image10.jpg", label: "Suku Anak Dalam Field" },
   { name: "image11.png", path: "assets/images/ppt/image11.png", label: "Kemendikbud Certificate" },
+  { name: "frost-analytics.png", path: "assets/images/frost-analytics.png", label: "YouTube Studio 123.2M Views" },
+  { name: "frost-channel.png", path: "assets/images/frost-channel.png", label: "Frost One Channel @FrostOne01" },
   { name: "image12.png", path: "assets/images/ppt/image12.png", label: "Frost.One Banner" },
   { name: "image13.png", path: "assets/images/ppt/image13.png", label: "Frost Analytics 26.4M" },
   { name: "image14.png", path: "assets/images/ppt/image14.png", label: "YouTube Studio Stats" },
